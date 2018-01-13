@@ -114,6 +114,24 @@ local function initial(list)
     end
 end
 
+local function difference2(list, values)
+    if predicates.isTable(list) == false then
+        return nil, 'list is not a table'
+    end
+    if predicates.isTable(values) == false then
+        return nil, 'values is not a table'
+    end
+
+    local included = {}
+    for i, v in ipairs(list) do
+        local foundIndex = findIndex(0, function(item) return item == v end, values)
+        if foundIndex == -1 then
+            table.insert(included, v)
+        end
+    end
+    return included
+end
+
 list.indexOf = func.curry(3, indexOf)
 list.findIndex = func.curry(3, findIndex)
 list.find = func.curry(3, find)
@@ -121,5 +139,6 @@ list.head = head
 list.last = last
 list.tail = tail
 list.initial = initial
+list.difference2 = func.curry(2, difference2)
 
 return list

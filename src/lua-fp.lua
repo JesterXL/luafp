@@ -64,3 +64,9 @@ end
 -- print("---")
 -- show(list.initial({}))
 -- print("---")
+
+-- print("** difference2 **")
+-- show(list.difference2({'uno', 'dos', 'tres'})({'uno', 'dos', 'tres'}))
+-- print("---")
+-- show(list.difference2({'uno', 'dos', 'tres'})({'tres'}))
+-- print("---")
