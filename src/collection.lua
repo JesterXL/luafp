@@ -59,10 +59,10 @@ end
 
 local function every(func, list)
     if predicates.isTable(list) == false then
-        return {}, 'list is not a table'
+        return false, 'list is not a table'
     end
     if predicates.isFunction(func) == false then
-        return {}, 'func is not a function'
+        return false, 'func is not a function'
     end
     for i, v in ipairs(list) do
         local result = func(v)
@@ -75,10 +75,10 @@ end
 
 local function some(func, list)
     if predicates.isTable(list) == false then
-        return {}, 'list is not a table'
+        return false, 'list is not a table'
     end
     if predicates.isFunction(func) == false then
-        return {}, 'func is not a function'
+        return false, 'func is not a function'
     end
     for i, v in ipairs(list) do
         local result = func(v)
@@ -89,12 +89,14 @@ local function some(func, list)
     return false
 end
 
+
 collection.length = length
 collection.map = func.curry(2, map)
 collection.filter = func.curry(2, filter)
 collection.reduce = func.curry(3, reduce)
 collection.every = func.curry(2, every)
 collection.some = func.curry(2, some)
+
 
 
 return collection

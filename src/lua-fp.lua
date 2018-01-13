@@ -42,3 +42,25 @@ end
 -- print(collection.some(isCow)({'cow', 'cow', 'cow'}))
 -- print(collection.some(isCow)({'cow', 'chicken', 'cow'}))
 -- print(collection.some(isCow)({'a', 'chicken', 'how now brown cow'}))
+
+-- print(list.head({'uno', 'dos', 'tres'}))
+-- print(list.head({}))
+
+-- print(list.last({'uno', 'dos', 'tres'}))
+-- print(list.last({}))
+
+-- print("** tail **")
+-- show(list.tail({'uno', 'dos', 'tres'}))
+-- print("---")
+-- show(list.tail({'uno'}))
+-- print("---")
+-- show(list.tail({}))
+-- print("---")
+
+-- print("** initial **")
+-- show(list.initial({'uno', 'dos', 'tres'}))
+-- print("---")
+-- show(list.initial({'uno'}))
+-- print("---")
+-- show(list.initial({}))
+-- print("---")
