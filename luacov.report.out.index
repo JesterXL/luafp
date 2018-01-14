@@ -1,0 +1,10 @@
+./src/predicates.lua:0 819
+./src/list.lua:819 4829
+./src/object.lua:4829 5370
+./src/util.lua:5370 5820
+./src/collection.lua:5820 8698
+./src/func.lua:8698 10490
+./src/lua-fp.lua:10490 12984
+./tests/predicates.test.lua:12984 13964
+./tests/basic.test.lua:13964 15071
+Summary:15071 15845
