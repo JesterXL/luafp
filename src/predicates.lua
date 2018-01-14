@@ -32,4 +32,8 @@ function predicates.isTable(o)
     return type(o) == 'table'
 end
 
+function predicates.exists(o)
+    return predicates.isNil(o) == false
+end
+
 return predicates

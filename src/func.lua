@@ -18,6 +18,16 @@ local function reverse(...)
     return reverse_h(function () return end, ...)
  end
 
+ -- lol, DRY
+local function length(list)
+    if list == nil then
+        return 0
+    end
+    local count = 0
+    for _ in pairs(list) do count = count + 1 end
+    return count
+end
+
 local function curry(num_args, func)
 
     -- currying 2-argument functions seems to be the most popular application
@@ -25,7 +35,7 @@ local function curry(num_args, func)
  
     -- no sense currying for 1 arg or less
     if num_args <= 1 then return func end
- 
+
     -- helper takes an argtrace function, and number of arguments remaining to be applied
     local function curry_h(argtrace, n)
        if 0 == n then
@@ -41,7 +51,6 @@ local function curry(num_args, func)
     
     -- push the terminal case of argtrace into the function first
     return curry_h(function () return end, num_args)
- 
  end
  
 func.reverse = reverse
