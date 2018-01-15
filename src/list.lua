@@ -132,6 +132,27 @@ local function difference2(list, values)
     return included
 end
 
+-- _.fill(Array(10), 'a')
+local function fill(value, startIndex, endIndex, tbl)
+    if predicates.isNil(value) == true then
+        return nil, 'you cannot fill a Lua table with a bunch of nils as the last item to have nil is considered the end'
+    end
+    if predicates.isNumber(startIndex) == false then
+        return nil, 'startIndex is not a number'
+    end
+    if predicates.isNumber(endIndex) == false then
+        return nil, 'endIndex is not a number'
+    end
+    if predicates.isTable(tbl) == false then
+        return nil, 'tbl is not a table'
+    end
+
+    for i=startIndex,endIndex,1 do
+        tbl[i] = value
+    end
+    return tbl
+end
+
 list.indexOf = func.curry(3, indexOf)
 list.findIndex = func.curry(3, findIndex)
 list.find = func.curry(3, find)
@@ -140,5 +161,6 @@ list.last = last
 list.tail = tail
 list.initial = initial
 list.difference2 = func.curry(2, difference2)
+list.fill = func.curry(4, fill)
 
 return list

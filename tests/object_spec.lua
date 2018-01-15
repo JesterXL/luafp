@@ -171,4 +171,89 @@ describe("src/object.lua", function()
             assert.is_nil(result)
         end)
     end)
+    describe('getOr', function()
+        it('should give a property if there', function()
+            local cow = { firstName = "Jesse" }
+            assert.are.same(object.getOr('chicken')('firstName')(cow), 'Jesse')
+        end)
+        it('should give default if not there', function()
+            local cow = { firstName = "Jesse" }
+            assert.are.same(object.getOr('chicken')('badge')(cow), 'chicken')
+        end)
+        it('should give default if nil value', function()
+            assert.is_not_nil(object.getOr('chicken')('badge')(nil))
+        end)
+        it('should work with nested paths', function()
+            local account = {
+                person = {
+                    name = "Jesse",
+                    address = {
+                        city = "moogleville"
+                    }
+                }
+            }
+            local result = object.getOr('cheese')('person.address.city')(account)
+            assert.are.same(result, 'moogleville')
+        end)
+        it('should work with nested paths that have arrays in it', function()
+            local account = {
+                person = {
+                    name = "Jesse",
+                    address = {
+                        city = "moogleville",
+                        phone = {
+                            '1234567890',
+                            '8005551234'
+                        }
+                    }
+                }
+            }
+            local result = object.getOr('burger')('person.address.phone[2]')(account)
+            assert.are.same(result, '8005551234')
+        end)
+        it('should work with nested paths that have arrays in it even deeper', function()
+            local account = {
+                person = {
+                    name = "Jesse",
+                    address = {
+                        city = "moogleville",
+                        phone = {
+                            {
+                                number = '1234567890',
+                                type = 'home'
+                            },
+                            {
+                                number = '8005551234',
+                                type = 'cell'
+                            }
+                        }
+                    }
+                }
+            }
+            local result = object.getOr('sitar')('person.address.phone[2].type')(account)
+            assert.are.same(result, 'cell')
+        end)
+        it('should fail with deeply nested object if blatant mispelling', function()
+            local account = {
+                person = {
+                    name = "Jesse",
+                    address = {
+                        city = "moogleville",
+                        phone = {
+                            {
+                                number = '1234567890',
+                                type = 'home'
+                            },
+                            {
+                                number = '8005551234',
+                                type = 'cell'
+                            }
+                        }
+                    }
+                }
+            }
+            local result = object.getOr('vodka')('person.address.phone[2].chicken')(account)
+            assert.are.same(result, 'vodka')
+        end)
+    end)
 end)

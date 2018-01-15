@@ -97,7 +97,36 @@ local function get(property, o)
     end
 end
 
+local function getOr(defaultValue, property, o)
+    if predicates.isString(property) == false then
+        return defaultValue, 'property is not a string, so nothing to get'
+    end
+    if predicates.isNil(o) == true then
+        return defaultValue, 'o is nil, so nothing to get'
+    end
+    if hasDots(property) == true then
+        local parsedPath = splitString(property, '.')
+        local result, valueOrError = pcall(dig, parsedPath, o)
+        if result == true then
+            if predicates.exists(valueOrError) then
+                return valueOrError
+            else
+                return defaultValue
+            end
+        else
+            return defaultValue
+        end
+    else
+        if predicates.exists(o[property]) then
+            return o[property]
+        else
+            return defaultValue
+        end
+    end
+end
+
 object.has = func.curry(2, has)
 object.get = func.curry(2, get)
+object.getOr = func.curry(3, getOr)
 
 return object

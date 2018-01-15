@@ -1,5 +1,6 @@
 local predicates = require('./src/predicates')
 local func = require('./src/func')
+local reactive = require "./src/reactive" 
 
 function show(list)
     if predicates.isTable(list) == false then
@@ -88,9 +89,9 @@ end
 -- end
 -- print("holder:", holder)
 
-local function add(a, b)
-    return a + b
-end
+-- local function add(a, b)
+--     return a + b
+-- end
 
 -- print(add(1, 1))
 
@@ -107,3 +108,22 @@ print(addCurry(1)(1))
 -- end
 
 -- dem(1, "a", {sup = 'man'})
+
+-- local subject = reactive.getSubject()
+-- local sub = subject:subscribe(
+--     function(item) print("**next:", item) end,
+--     function(error) print("**error:", error) end,
+--     function(done) print("**done:", done) end
+-- )
+-- local sub2 = subject:subscribe(
+--     function(item) print("^^next2:", item) end,
+--     function(error) print("^^error2:", error) end,
+--     function(done) print("^^done2:", done) end
+-- )
+-- subject:next("uno")
+-- subject:next("dos")
+-- sub:dispose()
+-- subject:next("tres")
+-- subject:error("t3h boom")
+-- subject:complete("we done")
+-- subject:next("how in the")

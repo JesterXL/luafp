@@ -35,7 +35,7 @@ local function curry(num_args, func)
  
     -- no sense currying for 1 arg or less
     if num_args <= 1 then return func end
-
+ 
     -- helper takes an argtrace function, and number of arguments remaining to be applied
     local function curry_h(argtrace, n)
        if 0 == n then
@@ -51,6 +51,7 @@ local function curry(num_args, func)
     
     -- push the terminal case of argtrace into the function first
     return curry_h(function () return end, num_args)
+ 
  end
  
 func.reverse = reverse
