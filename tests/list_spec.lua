@@ -23,4 +23,38 @@ describe("src/list.lua", function()
             assert.are.same({'chicken', 'Sub Zero', 'cow', 'cow', 'cow'}, result)
         end)
     end)
+    describe('flatten', function()
+        it('should flatten a basic list within list', function()
+            local result = list.flatten({'a', 'b', {1, 2, 3}, 'c'})
+            assert.are.same({'a', 'b', 1, 2, 3, 'c'}, result)
+        end)
+        it('should leave a basic list alone', function()
+            local result = list.flatten({'a', 'b', 'c'})
+            assert.are.same({'a', 'b', 'c'}, result)
+        end)
+        it('should leave a blank list alone', function()
+            local result = list.flatten({})
+            assert.are.same({}, result)
+        end)
+        it('should only go 1 level and not do insane recursion', function()
+            local result = list.flatten({
+                'a', 
+                'b', 
+                {
+                    1, 
+                    2, 
+                    {'chicken', 'cow'}
+                },
+                3
+            })
+            assert.are.same({
+                'a',
+                'b',
+                1,
+                2,
+                {'chicken', 'cow'},
+                3
+            }, result)
+        end)
+    end)
 end)

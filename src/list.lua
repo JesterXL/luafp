@@ -153,6 +153,30 @@ local function fill(value, startIndex, endIndex, tbl)
     return tbl
 end
 
+-- TODO: it mutates, ugh...
+local function insertABunch(list, items)
+    for i, v in ipairs(items) do
+        table.insert(list, v)
+    end
+    return list
+end
+
+local function flatten(list)
+    if predicates.isTable(list) == false then
+        return nil, 'you cannot flatten a nil value, list is not a table'
+    end
+
+    local flatterErf = {}
+    for i, v in ipairs(list) do
+        if predicates.isTable(v) == true then
+            insertABunch(flatterErf, v)
+        else
+            table.insert(flatterErf, v)
+        end
+    end
+    return flatterErf
+end
+
 list.indexOf = func.curry(3, indexOf)
 list.findIndex = func.curry(3, findIndex)
 list.find = func.curry(3, find)
@@ -162,5 +186,6 @@ list.tail = tail
 list.initial = initial
 list.difference2 = func.curry(2, difference2)
 list.fill = func.curry(4, fill)
+list.flatten = flatten
 
 return list
