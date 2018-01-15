@@ -53,8 +53,22 @@ local function curry(num_args, func)
     return curry_h(function () return end, num_args)
  
  end
+
+local function negate(func)
+    local function wrapped(...)
+        local args = {...}
+        local result = func(table.unpack(args))
+        if result == true then
+            return false
+        else
+            return true
+        end
+    end
+    return wrapped
+end
  
 func.reverse = reverse
 func.curry = curry
+func.negate = negate
 
 return func
