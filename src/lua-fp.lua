@@ -1,72 +1,18 @@
-local list = require "./src/list"
-local predicates = require "./src/predicates"
 local collection = require "./src/collection"
+local func = require "./src/func"
+local list = require "./src/list"
+local object = require "./src/object"
+local predicates = require "./src/predicates"
+local reactive = require "./src/reactive"
+local util = require "./src/util"
 
-function show(list)
-    if predicates.isTable(list) == false then
-        return
-    end
-    for i, v in ipairs(list) do
-        print(v)
-    end
-    return
-end
+local luaFP = {}
 
+luaFP.collection = collection
+luaFP.func = func
+luaFP.list = list
+luaFP.object = object
+luaFP.predicates = predicates
+luaFP.util = util
 
--- show(list.map(function(i) return i + 1 end)({1, 2, 3}))
--- show(list.filter({"cow", "cheese", 4}, predicates.isString))
--- function sumThem(acc, item)
---     return acc + item
--- end
--- print(list.reduce({1, 2, 3}, sumThem, 0))
-
--- print(list.indexOf(0, 'cow', {'uno', 'dos', 'cow'}))
--- print(list.indexOf(0, 'chicken', {'uno', 'dos', 'cow'}))
-
--- local isCow = function(o) return o == 'cow' end
--- print(list.findIndex(0)(isCow)({'uno', 'dos', 'cow'}))
--- print(list.indexOf(0)(isCow)({'uno', 'dos', 'chicken'}))
--- local beginCow = list.findIndex(0)(isCow)
--- print(beginCow({'uno', 'dos', 'cow'}))
--- print(beginCow({'uno', 'dos', 'chicken'}))
-
--- local isCow = function(o) return o == 'cow' end
--- print(list.find(0)(isCow)({'uno', 'dos', 'cow'}))
--- print(list.find(0)(isCow)({'uno', 'dos', 'dat chicken tho'}))
-
--- local isCow = function(o) return o == 'cow' end
--- print(collection.every(isCow)({'cow', 'cow', 'cow'}))
--- print(collection.every(isCow)({'cow', 'chicken', 'cow'}))
-
--- local isCow = function(o) return o == 'cow' end
--- print(collection.some(isCow)({'cow', 'cow', 'cow'}))
--- print(collection.some(isCow)({'cow', 'chicken', 'cow'}))
--- print(collection.some(isCow)({'a', 'chicken', 'how now brown cow'}))
-
--- print(list.head({'uno', 'dos', 'tres'}))
--- print(list.head({}))
-
--- print(list.last({'uno', 'dos', 'tres'}))
--- print(list.last({}))
-
--- print("** tail **")
--- show(list.tail({'uno', 'dos', 'tres'}))
--- print("---")
--- show(list.tail({'uno'}))
--- print("---")
--- show(list.tail({}))
--- print("---")
-
--- print("** initial **")
--- show(list.initial({'uno', 'dos', 'tres'}))
--- print("---")
--- show(list.initial({'uno'}))
--- print("---")
--- show(list.initial({}))
--- print("---")
-
--- print("** difference2 **")
--- show(list.difference2({'uno', 'dos', 'tres'})({'uno', 'dos', 'tres'}))
--- print("---")
--- show(list.difference2({'uno', 'dos', 'tres'})({'tres'}))
--- print("---")
+return luaFP

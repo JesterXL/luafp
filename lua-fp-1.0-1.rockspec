@@ -1,7 +1,8 @@
 package = "lua-fp"
 version = "1.0-1"
 source = {
-   url = "https://github.com/JesterXL/lua-fp"
+   url = "https://github.com/JesterXL/lua-fp",
+   tag = "v1.0"
 }
 description = {
    summary = "Functional Programming and list comprehension helper functions for Lua.",
