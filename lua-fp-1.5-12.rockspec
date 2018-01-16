@@ -1,9 +1,9 @@
 package = "lua-fp"
-version = "1.5-11"
+version = "1.5-12"
 source = {
-   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.11.tar.gz",
-   tag = "v1.5.11",
-   dir = 'lua-fp-v1.5.11'
+   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.12.tar.gz",
+   tag = "v1.5.12",
+   dir = 'lua-fp-v1.5.12'
 }
 description = {
    summary = "Functional Programming helper functions for Lua.",
@@ -28,6 +28,6 @@ build = {
     ['luafp.object'] = 'luafp/object.lua',
     ['luafp.predicates'] = 'luafp/predicates.lua',
     ['luafp.reactive'] = 'luafp/reactive.lua',
-    ['luafp.util'] = 'luafp/util.lua',
+    ['luafp.util'] = 'luafp/util.lua'
    }
 }
