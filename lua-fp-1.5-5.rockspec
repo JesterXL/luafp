@@ -14,8 +14,7 @@ description = {
    homepage = "https://jesterxl.github.io/lua-fp/doc/index.html",
    license = "MIT",
    issues_url = "https://github.com/JesterXL/lua-fp/issues",
-   maintainer = "Jesse Warden <jesterxl@jessewarden.com>",
-   labels = {"functionalprogramming", "fp", "listcomprehensions", "lodash", "curry", "pure", "immutable"}
+   maintainer = "Jesse Warden <jesterxl@jessewarden.com>"
 }
 dependencies = {
    "lua >= 5.1, < 5.4"
