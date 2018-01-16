@@ -1,7 +1,10 @@
+--- Lua FP object module.
+-- @module luaFP.object
+-- @alias object
 local object = {}
 
 local predicates = require './src/predicates'
-local func = require('./src/func')
+local func = require './src/func'
 
 local function splitString(inputstr, sep)
     if sep == nil then
@@ -57,15 +60,23 @@ local function dig(paths, object)
     return holder
 end
 
-local function has(property, o)
-    if predicates.isString(property) == false then
-        return false, 'property is not a string, so nothing to check for'
+--- Checks to see if a table has a path name. This is for tables, not classes enabled via metatables.
+-- @param path string name of the property
+-- @param o table that might contain the property name
+-- @return yesOrNo true if it found it, false if it was nil
+-- @return error String error message if parameter validation failed
+-- @usage local has = require 'luaFP'.object.has
+-- turtle = {firstName: 'Raphael', weapon: 'Sai'}
+-- print(has('weapon', turtle) -- true
+function object.has(path, o)
+    if predicates.isString(path) == false then
+        return false, 'path is not a string, so nothing to check for'
     end
     if predicates.isNil(o) == true then
         return false, 'o is nil, so nothing to check for'
     end
-    if hasDots(property) == true then
-        local parsedPath = splitString(property, '.')
+    if hasDots(path) == true then
+        local parsedPath = splitString(path, '.')
         local result, valueOrError = pcall(dig, parsedPath, o)
         if result == true then
             return predicates.exists(valueOrError) == true
@@ -73,19 +84,43 @@ local function has(property, o)
             return nil
         end
     else
-        return predicates.exists(o[property]) == true
+        return predicates.exists(o[path]) == true
     end
 end
 
-local function get(property, o)
-    if predicates.isString(property) == false then
-        return nil, 'property is not a string, so nothing to get'
+--- Gets the value of the object from the path, else nil. Supports property names and array indexes separated by dots.
+-- @see getOr
+-- @param path string name of the path
+-- @param o table that might contain the path name
+-- @return value value found at the path, else nil
+-- @return error String error message if parameter validation failed
+-- @usage local has = require 'luaFP'.object.has
+-- turtle = {
+--     firstName = 'Raphael', 
+--     type = {
+--         name = 'ninja',
+--         weapons = {
+--             {
+--                 name = 'Sai',
+--                 damage = 4
+--             },
+--             {
+--                 name = 'Fist',
+--                 damage = 2
+--             }
+--         }
+--     }
+-- }
+-- print(get('type.weapons[1].damage')(turtle)) -- 4
+function object.get(path, o)
+    if predicates.isString(path) == false then
+        return nil, 'path is not a string, so nothing to get'
     end
     if predicates.isNil(o) == true then
         return nil, 'o is nil, so nothing to get'
     end
-    if hasDots(property) == true then
-        local parsedPath = splitString(property, '.')
+    if hasDots(path) == true then
+        local parsedPath = splitString(path, '.')
         local result, valueOrError = pcall(dig, parsedPath, o)
         if result == true then
             return valueOrError
@@ -93,19 +128,45 @@ local function get(property, o)
             return nil
         end
     else
-        return o[property]
+        return o[path]
     end
 end
 
-local function getOr(defaultValue, property, o)
-    if predicates.isString(property) == false then
-        return defaultValue, 'property is not a string, so nothing to get'
+
+--- Gets the value of the object from the path, else returns the default value. Supports property names and array indexes separated by dots. Like get, except it provides a default vs. nil
+-- @see get
+-- @param defaultValue value you want returned if nil is found at the path
+-- @param path string name of the path
+-- @param o table that might contain the path name
+-- @return value value found at the path, else your provided defaultValue
+-- @return error String error message if parameter validation failed
+-- @usage local getOr = require 'luaFP'.object.getOr
+-- turtle = {
+--     firstName = 'Raphael', 
+--     type = {
+--         name = 'ninja',
+--         weapons = {
+--             {
+--                 name = 'Sai',
+--                 damage = 4
+--             },
+--             {
+--                 name = 'Fist',
+--                 damage = 2
+--             }
+--         }
+--     }
+-- }
+-- print(getOr(0)('type.weapons[3].damage')(turtle)) -- 0
+function object.getOr(defaultValue, path, o)
+    if predicates.isString(path) == false then
+        return defaultValue, 'path is not a string, so nothing to get'
     end
     if predicates.isNil(o) == true then
         return defaultValue, 'o is nil, so nothing to get'
     end
-    if hasDots(property) == true then
-        local parsedPath = splitString(property, '.')
+    if hasDots(path) == true then
+        local parsedPath = splitString(path, '.')
         local result, valueOrError = pcall(dig, parsedPath, o)
         if result == true then
             if predicates.exists(valueOrError) then
@@ -117,16 +178,16 @@ local function getOr(defaultValue, property, o)
             return defaultValue
         end
     else
-        if predicates.exists(o[property]) then
-            return o[property]
+        if predicates.exists(o[path]) then
+            return o[path]
         else
             return defaultValue
         end
     end
 end
 
-object.has = func.curry(2, has)
-object.get = func.curry(2, get)
-object.getOr = func.curry(3, getOr)
+object.has = func.curry(object.has)
+object.get = func.curry(object.get)
+object.getOr = func.curry(object.getOr)
 
 return object

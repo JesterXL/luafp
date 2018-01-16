@@ -1,8 +1,8 @@
 package = "lua-fp"
-version = "1.0-1"
+version = "1.1-1"
 source = {
    url = "https://github.com/JesterXL/lua-fp",
-   tag = "v1.0"
+   tag = "v1.1"
 }
 description = {
    summary = "Functional Programming and list comprehension helper functions for Lua.",
@@ -19,5 +19,6 @@ build = {
    type = "builtin",
    modules = {
        luafp = "src/lua-fp.lua"
-   }
+   },
+   copy_directories = { "doc", "test" }
 }

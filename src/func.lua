@@ -1,60 +1,60 @@
+--- Lua FP functions module
+-- @module luaFP.func
+-- @alias func
 local func = {}
 
- -- reverse(...) : take some tuple and return a tuple of elements in reverse order
- --                  
- -- e.g. "reverse(1,2,3)" returns 3,2,1
-local function reverse(...)
- 
-    --reverse args by building a function to do it, similar to the unpack() example
-    local function reverse_h(acc, v, ...)
-       if 0 == select('#', ...) then
-      return v, acc()
-       else
-          return reverse_h(function () return v, acc() end, ...)
-       end
-    end  
- 
-    -- initial acc is the end of the list
-    return reverse_h(function () return end, ...)
- end
-
- -- lol, DRY
-local function length(list)
-    if list == nil then
-        return 0
+local function clone(t)
+    local r = {}
+    for i = 1, #t do
+        r[#r + 1] = t[i]
     end
-    local count = 0
-    for _ in pairs(list) do count = count + 1 end
-    return count
+    return r
 end
 
-local function curry(num_args, func)
+--- Takes your function arity (number of parameters) and a function, and turns it into a curried function. NOTE: We do not handle scope for you.
+-- Reference: https://gist.githubusercontent.com/jcmoyer/5571987/raw/3064bc4df0f4c027843e62f3c6581c3ce3cf5217/currying.lua
+-- @param num_args how many parameters your function takes (the arity). This assumes no default parameters as those don't really work that well with curried functions.
+-- @param func The function you wish to turn into a curried function.
+-- @return curriedFunk Your curried function.
+-- @usage local curry = require 'lua-fp'.func.curry
+-- function add(a, b) return a + b end
+-- addCurry = func.curry(add)
+-- add1 = addCurry(1)
+-- print(add1(2)) -- 3
+function func.curry(f)
+    local info = debug.getinfo(f, 'u')
 
-    -- currying 2-argument functions seems to be the most popular application
-    num_args = num_args or 2
- 
-    -- no sense currying for 1 arg or less
-    if num_args <= 1 then return func end
- 
-    -- helper takes an argtrace function, and number of arguments remaining to be applied
-    local function curry_h(argtrace, n)
-       if 0 == n then
-      -- kick off argtrace, reverse argument list, and call the original function
-          return func(reverse(argtrace()))
-       else
-          -- "push" argument (by building a wrapper function) and decrement n
-          return function (onearg)
-                    return curry_h(function () return onearg, argtrace() end, n - 1)
-                 end
-       end
-    end  
-    
-    -- push the terminal case of argtrace into the function first
-    return curry_h(function () return end, num_args)
- 
- end
+    local function docurry(s, left, ...)
+        local ptbl = clone(s)
+        local vargs = {...}
+        for i = 1, #vargs do
+            ptbl[#ptbl + 1] = vargs[i]
+        end
+        left = left - #vargs
+        if left > 0 then
+            return function(...)
+                return docurry(ptbl, left, ...)
+            end
+        else
+            return f(table.unpack(ptbl))
+        end
+    end
 
-local function negate(func)
+    return function(...)
+            return docurry({}, info.nparams, ...)
+    end
+end
+
+--- Takes a predicate function and reverse the value returned. If the function returns true, it'll now return false. If the function returns false, it'll now return true.
+-- @param func Your predicate function, a function that only returns true or false. Parameter count doesn't matter, we'll unpack and call it for you.
+-- @return negated Your reversed predicate function.
+-- @usage local func = require 'lua-fp'.negate
+-- function isCow(o) return o == 'cow' end
+-- print(isCow('cow')) -- true
+-- isNotCowLulz = func.negate(isCow)
+-- print(isNotCowLulz('cow')) -- false
+-- print(isNotCowLulz('chicken')) -- true
+function func.negate(func)
     local function wrapped(...)
         local args = {...}
         local result = func(table.unpack(args))
@@ -66,9 +66,5 @@ local function negate(func)
     end
     return wrapped
 end
- 
-func.reverse = reverse
-func.curry = curry
-func.negate = negate
 
 return func

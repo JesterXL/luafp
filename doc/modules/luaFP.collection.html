@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/luaFP.array.html">luaFP.array</a></li>
+  <li><strong>luaFP.collection</strong></li>
+  <li><a href="../modules/luaFP.func.html">luaFP.func</a></li>
+  <li><a href="../modules/luaFP.html">luaFP</a></li>
+  <li><a href="../modules/luaFP.object.html">luaFP.object</a></li>
+  <li><a href="../modules/luaFP.predicates.html">luaFP.predicates</a></li>
+  <li><a href="../modules/luaFP.reactive.html">luaFP.reactive</a></li>
+  <li><a href="../modules/luaFP.util.html">luaFP.util</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>luaFP.collection</code></h1>
+<p>Lua FP collections module.</p>
+<p> All functions that have more than 1 parameter are curried.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#length">length (list)</a></td>
+	<td class="summary">length of a list, counts how many items are in a table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#map">map (func, list)</a></td>
+	<td class="summary">takes a table in, runs the function on each item in the table, stores the results in a new table, and returns that table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#filter">filter (func, list)</a></td>
+	<td class="summary">takes a table in, runs the predicate on each item in the table to filter out only the items you want.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#reduce">reduce (func, accumulator, list)</a></td>
+	<td class="summary">takes a table in with an accumulator, runs the function on each item in the table, stores the results in the accumulator, and returns the final accumulator result.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#every">every (func, list)</a></td>
+	<td class="summary">Takes a table and runs a predicate function on each item.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#some">some (func, list)</a></td>
+	<td class="summary">Takes a table and runs a predicate function on each item.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "length"></a>
+    <strong>length (list)</strong>
+    </dt>
+    <dd>
+    length of a list, counts how many items are in a table.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         a table with items in it
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        integer length of the table</li>
+        <li>
+        string error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+cows = {<span class="string">'uno'</span>, <span class="string">'dos'</span>, <span class="string">'tres'</span>}
+<span class="global">print</span>(collection.length(cows)) <span class="comment">-- 3</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "map"></a>
+    <strong>map (func, list)</strong>
+    </dt>
+    <dd>
+    takes a table in, runs the function on each item in the table, stores the results in a new table, and returns that table.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+         function that takes the item from the table, and whatever you return goes into the new table.
+        </li>
+        <li><span class="parameter">list</span>
+         Table of items you wish to map to someting else.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        list has your mapped items in it</li>
+        <li>
+        string error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+ingredients = {<span class="string">'🐮'</span>, <span class="string">'🥔'</span>, <span class="string">'🐔'</span>, <span class="string">'🌽'</span>}
+<span class="keyword">function</span> cook(item)
+    <span class="keyword">if</span> item == <span class="string">'🐮'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="string">'🍔'</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> item == <span class="string">'🥔'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="string">'🍟'</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> item == <span class="string">'🐔'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="string">'🍗'</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> item == <span class="string">'🌽'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="string">'🍿'</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+results = collection.map(ifCowTurnToChicken, ingredients)
+<span class="comment">-- results would be:
+</span>{<span class="string">'🍔'</span>, <span class="string">'🍟'</span>, <span class="string">'🍗'</span>, <span class="string">'🍿'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "filter"></a>
+    <strong>filter (func, list)</strong>
+    </dt>
+    <dd>
+    takes a table in, runs the predicate on each item in the table to filter out only the items you want.  For predicates that return true, the item will be included in a new list. If the predicate returns false, the item will not be included in the new list.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+         predicate function that takes the item from the table, expected to return true, if you want to keep the item, or false if you don't.
+        </li>
+        <li><span class="parameter">list</span>
+         Table of items you wish to filter
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        list has your filtered items in it, if any</li>
+        <li>
+        string error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+food = {<span class="string">'🍔'</span>, <span class="string">'🍟'</span>, <span class="string">'🍗'</span>, <span class="string">'🍿'</span>}
+<span class="keyword">function</span> isVegetarian(item)
+    <span class="keyword">if</span> item == <span class="string">'🍔'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="keyword">false</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> item == <span class="string">'🍟'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="keyword">true</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> item == <span class="string">'🍗'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="keyword">false</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> item == <span class="string">'🍿'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="keyword">true</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+results = collection.filter(isVegetarian, food)
+<span class="comment">-- results would be:
+</span>{<span class="string">'🍟'</span>, <span class="string">'🍿'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "reduce"></a>
+    <strong>reduce (func, accumulator, list)</strong>
+    </dt>
+    <dd>
+    takes a table in with an accumulator, runs the function on each item in the table, stores the results in the accumulator, and returns the final accumulator result.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+         reducer function; takes your item and current accumulator value in, and whatever you return is the new accumulator value.
+        </li>
+        <li><span class="parameter">accumulator</span>
+         starting value for your reduce function
+        </li>
+        <li><span class="parameter">list</span>
+         Table of items you wish to reduce.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value Whatever the accumulator value is computed from your reducer.</li>
+        <li>
+        string error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+food = {<span class="string">'🍔'</span>, <span class="string">'🍟'</span>, <span class="string">'🍗'</span>, <span class="string">'🍿'</span>}
+<span class="keyword">function</span> eat(acc, item)
+    <span class="keyword">return</span> <span class="string">'💩'</span>
+<span class="keyword">end</span>
+results = collection.reduce(eat, food)
+<span class="comment">-- results would be:
+</span>{<span class="string">'💩'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "every"></a>
+    <strong>every (func, list)</strong>
+    </dt>
+    <dd>
+    Takes a table and runs a predicate function on each item.  If all of them return true, then this function returns true, else false.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+         predicate function that takes each item of the list and is expected to return true or false.
+        </li>
+        <li><span class="parameter">list</span>
+         Table of items you wish to verify.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value true or false</li>
+        <li>
+        string error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+animals = {<span class="string">'🐮'</span>, <span class="string">'🐔'</span>, <span class="string">'🐷'</span>}
+<span class="keyword">function</span> isAnimal(item)
+    <span class="keyword">if</span> item == <span class="string">'🐷'</span> <span class="keyword">or</span> item == <span class="string">'🐔'</span> <span class="keyword">or</span> item == <span class="string">'🐷'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="keyword">true</span>
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> <span class="keyword">false</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+allAnimals = collection.every(isAnimal, animals)
+<span class="global">print</span>(allAnimals) <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "some"></a>
+    <strong>some (func, list)</strong>
+    </dt>
+    <dd>
+    Takes a table and runs a predicate function on each item.  If at least one returns true, then this function returns true, else false.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+         predicate function that takes each item of the list and is expected to return true or false.
+        </li>
+        <li><span class="parameter">list</span>
+         Table of items you wish to verify.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value true or false</li>
+        <li>
+        string error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+items = {<span class="string">'🐮'</span>, <span class="string">'🐔'</span>, <span class="string">'🐷'</span>, <span class="string">'🌽'</span>}
+<span class="keyword">function</span> isPlant(item)
+    <span class="keyword">if</span> item == <span class="string">'🌽'</span> <span class="keyword">then</span>
+        <span class="keyword">return</span> <span class="keyword">true</span>
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> <span class="keyword">false</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+hasAPlant = collection.some(isPlant, items)
+<span class="global">print</span>(hasAPlant) <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2018-01-15 18:36:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

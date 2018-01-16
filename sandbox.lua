@@ -1,28 +1,30 @@
-local predicates = require('./src/predicates')
-local func = require('./src/func')
-local reactive = require "./src/reactive" 
+-- local predicates = require('./src/predicates')
+-- local func = require('./src/func')
+-- local reactive = require "./src/reactive" 
 
 function show(list)
-    if predicates.isTable(list) == false then
-        return
+    if type(list) ~= 'table' then
+        return print('show failed, list is not a table')
     end
-    for i, v in ipairs(list) do
-        print(v)
-    end
+    -- local str
+    -- for i, v in ipairs(list) do
+    --     str
+    -- end
+    print(table.unpack(list))
     return
 end
 
-function mysplit(inputstr, sep)
-    if sep == nil then
-            sep = "%s"
-    end
-    local t={} ; i=1
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-            t[i] = str
-            i = i + 1
-    end
-    return t
-end
+-- function mysplit(inputstr, sep)
+--     if sep == nil then
+--             sep = "%s"
+--     end
+--     local t={} ; i=1
+--     for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+--             t[i] = str
+--             i = i + 1
+--     end
+--     return t
+-- end
 
 -- show(mysplit('a.b.c', '.'))
 
@@ -35,24 +37,24 @@ end
 --   print ("nope")
 -- end
 
-function hasDots(path)
-    if predicates.isString(path) == false then
-        return false, 'path is not a string'
-    end
-    local startIndex = string.find(path, '%.')
-    return predicates.isNumber(startIndex)
-end
+-- function hasDots(path)
+--     if predicates.isString(path) == false then
+--         return false, 'path is not a string'
+--     end
+--     local startIndex = string.find(path, '%.')
+--     return predicates.isNumber(startIndex)
+-- end
 
 -- TODO: make more verbose, perhaps splitting and checking
 -- first and last character to be [ and ], including middle
 -- to be a number. For now, just checking [.
-function isArrayAccessor(path)
-    if predicates.isString(path) == false then
-        return false, 'path is not a string'
-    end
-    local startIndex = string.find(path, '%[')
-    return predicates.isNumber(startIndex)
-end
+-- function isArrayAccessor(path)
+--     if predicates.isString(path) == false then
+--         return false, 'path is not a string'
+--     end
+--     local startIndex = string.find(path, '%[')
+--     return predicates.isNumber(startIndex)
+-- end
 
 -- print(hasDots('.'))
 -- print(hasDots('some.cow.man'))
@@ -89,14 +91,18 @@ end
 -- end
 -- print("holder:", holder)
 
--- local function add(a, b)
---     return a + b
--- end
+local curry = require './src/func'.curry
+local function add(a, b)
+    return a + b
+end
 
 -- print(add(1, 1))
 
-local addCurry = func.curry(2, add) 
-print(addCurry(1)(1))
+local addCurry = curry(add) 
+print(addCurry(20)(40))
+print(addCurry(20, 40))
+-- print("result:", result)
+-- print(addCurry(1)(1))
 -- print("-----")
 -- print(addCurry(1, 1))
 
@@ -127,3 +133,92 @@ print(addCurry(1)(1))
 -- subject:error("t3h boom")
 -- subject:complete("we done")
 -- subject:next("how in the")
+
+-- cow = {'uno', 'dos', 'tres'}
+-- for i, v in ipairs(cow) do
+
+--     if i >= 3 then
+--         print("i:", i, "v:", v)
+--     end
+    
+-- end
+
+-- local difference2 = require "./src/list".difference2
+
+-- local names = {'Jesse', 'Brandy', 'Cow'}
+-- local wat = {'Cow'}
+-- local result = difference2(names)(wat)
+-- print("result")
+-- show(result)
+-- local result2 = difference2(wat)(names)
+-- print("result2")
+-- show(result2)
+
+-- local fill = require './src/array'.fill
+
+-- SpiceGirls = {}
+-- show(fill('ziggyZigAh')(1)(3)(SpiceGirls))
+
+-- local get = require './src/object'.get
+-- turtle = {
+--     firstName = 'Raphael', 
+--     type = {
+--         name = 'ninja',
+--         weapons = {
+--             {
+--                 name = 'Sai',
+--                 damage = 4
+--             },
+--             {
+--                 name = 'Fist',
+--                 damage = 2
+--             }
+--         }
+--     }
+-- }
+-- print(get('type.weapons[1].damage')(turtle))
+
+
+-- local isNil = require './src/predicates'.isNil
+-- print(isNil(nil)) -- true
+-- print(isNil('cow')) -- false
+
+-- local isBoolean = require './src/predicates'.isBoolean
+-- print(isBoolean(nil)) -- false
+-- print(isBoolean()) -- false
+-- print(isBoolean('cow')) -- false
+-- print(isBoolean('')) -- false
+-- print(isBoolean(true)) -- true
+-- print(isBoolean(false)) -- true
+
+-- local isNumber = require './src/predicates'.isNumber
+-- print(isNumber(1))
+-- print(isNumber(1.23))
+-- print(isNumber(1.0))
+-- print(isNumber('1'))
+
+-- local isString = require './src/predicates'.isString
+-- print(isString('sup')) -- true
+-- print(isString('')) -- true
+-- print(isString(1)) -- false
+
+-- local isFunction = require './src/predicates'.isFunction
+-- print(isFunction(function() return true end))
+-- local cow = function() return true end
+-- print(isFunction(cow))
+-- local thing = {}
+-- thing.sup = function() return true end
+-- print(isFunction(thing.sup))
+-- print(isFunction({}))
+
+-- local isThread = require './src/predicates'.isThread
+-- function blade()
+--     print("blood")
+--     coroutine.yeild()
+--     print("is")
+--     coroutine.yeild()
+--     print("pumpin'")
+-- end
+-- co = coroutine.create(blade)
+-- print(isThread(blade))
+-- print(isThread(co))

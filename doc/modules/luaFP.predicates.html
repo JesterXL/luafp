@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/luaFP.array.html">luaFP.array</a></li>
+  <li><a href="../modules/luaFP.collection.html">luaFP.collection</a></li>
+  <li><a href="../modules/luaFP.func.html">luaFP.func</a></li>
+  <li><a href="../modules/luaFP.html">luaFP</a></li>
+  <li><a href="../modules/luaFP.object.html">luaFP.object</a></li>
+  <li><strong>luaFP.predicates</strong></li>
+  <li><a href="../modules/luaFP.reactive.html">luaFP.reactive</a></li>
+  <li><a href="../modules/luaFP.util.html">luaFP.util</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>luaFP.predicates</code></h1>
+<p>Lua FP predicates module.</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#isNil">isNil (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is nil or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isBoolean">isBoolean (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is a Boolean or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isNumber">isNumber (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is a Number or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isString">isString (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is a String or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isUserdata">isUserdata (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is a Userdata or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isFunction">isFunction (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is a Function or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isThread">isThread (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is a Thread or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isTable">isTable (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is a Table or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#exists">exists (o)</a></td>
+	<td class="summary">Predicate function that returns if the object you pass in is not nil.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isCow">isCow (o)</a></td>
+	<td class="summary">Predicate function that returns true if the object you pass is a cow</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "isNil"></a>
+    <strong>isNil (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is nil or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's nil, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isNil = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isNil
+<span class="global">print</span>(isNil(<span class="keyword">nil</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isNil(<span class="string">'cow'</span>)) <span class="comment">-- false</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isBoolean"></a>
+    <strong>isBoolean (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is a Boolean or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's a Boolean, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isBoolean = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isBoolean
+<span class="global">print</span>(isBoolean(<span class="keyword">nil</span>)) <span class="comment">-- false
+</span><span class="global">print</span>(isBoolean()) <span class="comment">-- false
+</span><span class="global">print</span>(isBoolean(<span class="string">'cow'</span>)) <span class="comment">-- false
+</span><span class="global">print</span>(isBoolean(<span class="string">''</span>)) <span class="comment">-- false
+</span><span class="global">print</span>(isBoolean(<span class="keyword">true</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isBoolean(<span class="keyword">false</span>)) <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isNumber"></a>
+    <strong>isNumber (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is a Number or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's a Number, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isNumber = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isNumber
+<span class="global">print</span>(isNumber(<span class="number">1</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isNumber(<span class="number">1.23</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isNumber(<span class="number">1.0</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isNumber(<span class="string">'1'</span>)) <span class="comment">-- false</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isString"></a>
+    <strong>isString (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is a String or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's a String, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isString = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isString
+<span class="global">print</span>(isString(<span class="string">'sup'</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isString(<span class="string">''</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isString(<span class="number">1</span>)) <span class="comment">-- false</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isUserdata"></a>
+    <strong>isUserdata (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is a Userdata or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's an Userdata, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isUserdata = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isUserdata
+<span class="global">print</span>(isUserdata(RobloxCharacter)) <span class="comment">-- true
+</span><span class="global">print</span>(isUserdata({})) <span class="comment">-- false
+</span><span class="global">print</span>(isUserdata(<span class="number">1</span>)) <span class="comment">-- false</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isFunction"></a>
+    <strong>isFunction (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is a Function or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's an Function, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isFunction = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isFunction
+<span class="global">print</span>(isFunction(<span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>)) <span class="comment">-- true
+</span><span class="keyword">local</span> cow = <span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>
+<span class="global">print</span>(isFunction(cow)) <span class="comment">-- true
+</span><span class="keyword">local</span> thing = {}
+thing.sup = <span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>
+<span class="global">print</span>(isFunction(thing.sup)) <span class="comment">-- true
+</span><span class="global">print</span>(isFunction({})) <span class="comment">-- false</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isThread"></a>
+    <strong>isThread (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is a Thread or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's an Thread, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isThread = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isThread
+<span class="keyword">function</span> blade()
+    <span class="global">print</span>(<span class="string">"blood"</span>)
+    <span class="global">coroutine</span>.yeild()
+    <span class="global">print</span>(<span class="string">"is"</span>)
+    <span class="global">coroutine</span>.yeild()
+    <span class="global">print</span>(<span class="string">"pumpin'"</span>)
+<span class="keyword">end</span>
+co = <span class="global">coroutine</span>.create(blade)
+<span class="global">print</span>(isThread(blade)) <span class="comment">-- false
+</span><span class="global">print</span>(isThread(co)) <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isTable"></a>
+    <strong>isTable (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is a Table or not.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's an Table, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isTable = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isTable
+<span class="global">print</span>(isTable(<span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>)) <span class="comment">-- false
+</span><span class="global">print</span>(isTable({})) <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "exists"></a>
+    <strong>exists (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns if the object you pass in is not nil.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's not nil, false if it's nil
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> exists = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.exists
+<span class="global">print</span>(exists(<span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(exists({})) <span class="comment">-- true
+</span><span class="global">print</span>(exists()) <span class="comment">-- false
+</span><span class="global">print</span>(exists(<span class="keyword">nil</span>)) <span class="comment">-- false</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "isCow"></a>
+    <strong>isCow (o)</strong>
+    </dt>
+    <dd>
+    Predicate function that returns true if the object you pass is a cow
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+         some object to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        yesOrNo true if it's a cow, false if it's not
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> exiisCowts = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isCow
+<span class="global">print</span>(isCow(<span class="string">'cow'</span>) <span class="comment">-- true
+</span><span class="global">print</span>(isCow(<span class="string">'🐮'</span>)) <span class="comment">-- true
+</span><span class="global">print</span>(isCow(<span class="string">'Jesse'</span>)) <span class="comment">-- false</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2018-01-15 18:36:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

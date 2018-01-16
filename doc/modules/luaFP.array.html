@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>luaFP.array</strong></li>
+  <li><a href="../modules/luaFP.collection.html">luaFP.collection</a></li>
+  <li><a href="../modules/luaFP.func.html">luaFP.func</a></li>
+  <li><a href="../modules/luaFP.html">luaFP</a></li>
+  <li><a href="../modules/luaFP.object.html">luaFP.object</a></li>
+  <li><a href="../modules/luaFP.predicates.html">luaFP.predicates</a></li>
+  <li><a href="../modules/luaFP.reactive.html">luaFP.reactive</a></li>
+  <li><a href="../modules/luaFP.util.html">luaFP.util</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>luaFP.array</code></h1>
+<p>Lua FP array module</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#indexOf">indexOf (fromIndex, value, list)</a></td>
+	<td class="summary">Searchs the list for your value, and if it finds it, it returns the index.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#findIndex">findIndex (fromIndex, func, list)</a></td>
+	<td class="summary">Searchs the list for your value using the predicate function you provide, and if the predicate function returns true, it returns the index.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#find">find (fromIndex, func, list)</a></td>
+	<td class="summary">Searchs the list for your value using the predicate function you provide, and if the predicate function returns true, it returns the item</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#head">head (list)</a></td>
+	<td class="summary">Gets the first item of the list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#last">last (list)</a></td>
+	<td class="summary">Gets the last item of the list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tail">tail (list)</a></td>
+	<td class="summary">Gets all but the first item of the list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#initial">initial (list)</a></td>
+	<td class="summary">Gets all but the last item of the list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#difference2">difference2 (list, values)</a></td>
+	<td class="summary">Gets the difference between in the 2 lists, and gives you a list containing the differences.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fill">fill (value, startIndex, endIndex, list)</a></td>
+	<td class="summary">Fills a table with values</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flatten">flatten (list)</a></td>
+	<td class="summary">Flattens a table 1 level by unpacking the table and inserting where it found it.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "indexOf"></a>
+    <strong>indexOf (fromIndex, value, list)</strong>
+    </dt>
+    <dd>
+    Searchs the list for your value, and if it finds it, it returns the index.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fromIndex</span>
+         Starting list index to search from
+        </li>
+        <li><span class="parameter">value</span>
+         Value you wish to look for in the list
+        </li>
+        <li><span class="parameter">list</span>
+         List you wish to search through
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        index 0 or above if it found it, -1 if it did not</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+cowIndex = list.indexOf(<span class="number">1</span>, <span class="string">'Cow'</span>, names)
+<span class="global">print</span>(cowIndex) <span class="comment">-- 3</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "findIndex"></a>
+    <strong>findIndex (fromIndex, func, list)</strong>
+    </dt>
+    <dd>
+    Searchs the list for your value using the predicate function you provide, and if the predicate function returns true, it returns the index.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fromIndex</span>
+         Starting list index to search from
+        </li>
+        <li><span class="parameter">func</span>
+         predicate function that takes the item from the table, expected to return true if your function thinks it found a match, false otherwise.
+        </li>
+        <li><span class="parameter">list</span>
+         List you wish to search through
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        index 0 or above if it found it, -1 if it did not</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+isCow = <span class="keyword">function</span>(o) <span class="keyword">return</span> o == <span class="string">'Cow'</span> <span class="keyword">end</span>
+cowIndex = list.fromIndex(<span class="number">1</span>, isCow, names)
+<span class="global">print</span>(cowIndex) <span class="comment">-- 3</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "find"></a>
+    <strong>find (fromIndex, func, list)</strong>
+    </dt>
+    <dd>
+    Searchs the list for your value using the predicate function you provide, and if the predicate function returns true, it returns the item
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fromIndex</span>
+         Starting list index to search from
+        </li>
+        <li><span class="parameter">func</span>
+         predicate function that takes the item from the table, expected to return true if your function thinks it found a match, false otherwise.
+        </li>
+        <li><span class="parameter">list</span>
+         List you wish to search through
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value The item in the list that was found, else nil</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+isCow = <span class="keyword">function</span>(o) <span class="keyword">return</span> o == <span class="string">'Cow'</span> <span class="keyword">end</span>
+cow = list.find(<span class="number">1</span>, isCow, names)
+<span class="global">print</span>(cow) <span class="comment">-- Cow</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "head"></a>
+    <strong>head (list)</strong>
+    </dt>
+    <dd>
+    Gets the first item of the list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         List you want the 1st item from
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value First item in the list, else nil</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+<span class="global">print</span>(list.head(names)) <span class="comment">-- Jesse</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "last"></a>
+    <strong>last (list)</strong>
+    </dt>
+    <dd>
+    Gets the last item of the list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         List you want the last item from
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value Last item in the list, else nil</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+<span class="global">print</span>(list.last(names)) <span class="comment">-- Cow</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "tail"></a>
+    <strong>tail (list)</strong>
+    </dt>
+    <dd>
+    Gets all but the first item of the list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         List you want the tail from
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value tail of the list, else nil</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+<span class="global">print</span>(list.tail(names)) <span class="comment">-- {'Brandy', 'Cow'}</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "initial"></a>
+    <strong>initial (list)</strong>
+    </dt>
+    <dd>
+    Gets all but the last item of the list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         List you want the initial from
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value initial of the list, else nil</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+<span class="global">print</span>(list.initial(names)) <span class="comment">-- {'Jesse', 'Brandy'}</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "difference2"></a>
+    <strong>difference2 (list, values)</strong>
+    </dt>
+    <dd>
+    Gets the difference between in the 2 lists, and gives you a list containing the differences.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         First list to compare
+        </li>
+        <li><span class="parameter">values</span>
+         Second list to compare against the first
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        differences A new list containing the differences</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
+wat = {<span class="string">'Cow'</span>}
+<span class="global">print</span>(list.difference2(names, wat)) <span class="comment">-- {'Jesse', 'Brandy'}</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "fill"></a>
+    <strong>fill (value, startIndex, endIndex, list)</strong>
+    </dt>
+    <dd>
+    Fills a table with values
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         Value you want to prepopulate in your list; cannot be nil
+        </li>
+        <li><span class="parameter">startIndex</span>
+         index to start insert your value
+        </li>
+        <li><span class="parameter">endIndex</span>
+         last index to stop inserting your value
+        </li>
+        <li><span class="parameter">list</span>
+         you want to insert values into
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        filled Your mutated list with values in it</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+SpiceGirls = {}
+<span class="global">print</span>(list.file(<span class="string">'ziggyZigAh'</span>, <span class="number">1</span>, <span class="number">3</span>, SpiceGirls)) <span class="comment">-- {'ziggyZigAh', 'ziggyZigAh', 'ziggyZigAh'}</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flatten"></a>
+    <strong>flatten (list)</strong>
+    </dt>
+    <dd>
+    Flattens a table 1 level by unpacking the table and inserting where it found it.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+         list which contains other list you wish to flatten
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        flattened List with 1 level of flattening done</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> flatten = <span class="global">require</span> <span class="string">'luaFP'</span>.flatten
+peeps = { {<span class="string">'Jesse'</span>, <span class="string">'Dat Lightning'</span>}, {<span class="string">'Cow'</span>, <span class="string">'Cheese'</span>} }
+<span class="global">print</span>(flatten(peeps) <span class="comment">-- {'Jesse', 'Dat Lightning', 'Cow', 'Cheese'}</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2018-01-15 18:36:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/luaFP.array.html">luaFP.array</a></li>
+  <li><a href="../modules/luaFP.collection.html">luaFP.collection</a></li>
+  <li><a href="../modules/luaFP.func.html">luaFP.func</a></li>
+  <li><a href="../modules/luaFP.html">luaFP</a></li>
+  <li><strong>luaFP.object</strong></li>
+  <li><a href="../modules/luaFP.predicates.html">luaFP.predicates</a></li>
+  <li><a href="../modules/luaFP.reactive.html">luaFP.reactive</a></li>
+  <li><a href="../modules/luaFP.util.html">luaFP.util</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>luaFP.object</code></h1>
+<p>Lua FP object module.</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#has">has (path, o)</a></td>
+	<td class="summary">Checks to see if a table has a path name.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get">get (path, o)</a></td>
+	<td class="summary">Gets the value of the object from the path, else nil.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getOr">getOr (defaultValue, path, o)</a></td>
+	<td class="summary">Gets the value of the object from the path, else returns the default value.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "has"></a>
+    <strong>has (path, o)</strong>
+    </dt>
+    <dd>
+    Checks to see if a table has a path name.  This is for tables, not classes enabled via metatables.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         string name of the property
+        </li>
+        <li><span class="parameter">o</span>
+         table that might contain the property name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        yesOrNo true if it found it, false if it was nil</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> has = <span class="global">require</span> <span class="string">'luaFP'</span>.object.has
+turtle = {firstName: <span class="string">'Raphael'</span>, weapon: <span class="string">'Sai'</span>}
+<span class="global">print</span>(has(<span class="string">'weapon'</span>, turtle) <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "get"></a>
+    <strong>get (path, o)</strong>
+    </dt>
+    <dd>
+    Gets the value of the object from the path, else nil.  Supports property names and array indexes separated by dots.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         string name of the path
+        </li>
+        <li><span class="parameter">o</span>
+         table that might contain the path name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value value found at the path, else nil</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/luaFP.object.html#getOr">getOr</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> has = <span class="global">require</span> <span class="string">'luaFP'</span>.object.has
+turtle = {
+    firstName = <span class="string">'Raphael'</span>,
+    <span class="global">type</span> = {
+        name = <span class="string">'ninja'</span>,
+        weapons = {
+            {
+                name = <span class="string">'Sai'</span>,
+                damage = <span class="number">4</span>
+            },
+            {
+                name = <span class="string">'Fist'</span>,
+                damage = <span class="number">2</span>
+            }
+        }
+    }
+}
+<span class="global">print</span>(get(<span class="string">'type.weapons[1].damage'</span>)(turtle)) <span class="comment">-- 4</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "getOr"></a>
+    <strong>getOr (defaultValue, path, o)</strong>
+    </dt>
+    <dd>
+    Gets the value of the object from the path, else returns the default value.  Supports property names and array indexes separated by dots. Like get, except it provides a default vs. nil
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">defaultValue</span>
+         value you want returned if nil is found at the path
+        </li>
+        <li><span class="parameter">path</span>
+         string name of the path
+        </li>
+        <li><span class="parameter">o</span>
+         table that might contain the path name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        value value found at the path, else your provided defaultValue</li>
+        <li>
+        error String error message if parameter validation failed</li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/luaFP.object.html#get">get</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> getOr = <span class="global">require</span> <span class="string">'luaFP'</span>.object.getOr
+turtle = {
+    firstName = <span class="string">'Raphael'</span>,
+    <span class="global">type</span> = {
+        name = <span class="string">'ninja'</span>,
+        weapons = {
+            {
+                name = <span class="string">'Sai'</span>,
+                damage = <span class="number">4</span>
+            },
+            {
+                name = <span class="string">'Fist'</span>,
+                damage = <span class="number">2</span>
+            }
+        }
+    }
+}
+<span class="global">print</span>(getOr(<span class="number">0</span>)(<span class="string">'type.weapons[3].damage'</span>)(turtle)) <span class="comment">-- 0</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2018-01-15 18:36:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

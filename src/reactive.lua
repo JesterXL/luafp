@@ -4,6 +4,9 @@
 -- 	end)
 -- end)
 
+--- Lua FP reactive module. Work in progress...
+-- @module luaFP.reactive
+-- @alias reactive
 local reactive = {}
 local list = require "./src/list"
 
