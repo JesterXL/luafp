@@ -1,4 +1,4 @@
-local predicates = require './src/predicates'
+local predicates = require 'luafp.predicates'
 
 describe("src/predicates.lua", function()
     describe('isNil', function()

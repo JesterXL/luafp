@@ -3,8 +3,8 @@
 -- @alias collection
 local collection = {}
 
-local func = require "./src/func"
-local predicates = require "./src/predicates"
+local func = require "luafp.func"
+local predicates = require "luafp.predicates"
 
 --- length of a list, counts how many items are in a table.
 -- @param list a table with items in it

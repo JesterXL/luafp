@@ -1,4 +1,4 @@
-local func = require './src/func'
+local func = require 'luafp.func'
 
 describe("src/func.lua", function()
     describe('negate', function()

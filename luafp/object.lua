@@ -3,8 +3,8 @@
 -- @alias object
 local object = {}
 
-local predicates = require './src/predicates'
-local func = require './src/func'
+local predicates = require 'luafp.predicates'
+local func = require 'luafp.func'
 
 local function splitString(inputstr, sep)
     if sep == nil then

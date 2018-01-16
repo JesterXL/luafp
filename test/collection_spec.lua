@@ -1,4 +1,4 @@
-local collection = require './src/collection'
+local collection = require 'luafp.collection'
 
 describe("src/collection.lua", function()
     describe('length', function()

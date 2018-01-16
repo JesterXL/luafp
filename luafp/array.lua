@@ -3,8 +3,8 @@
 -- @alias array
 local array = {}
 
-local predicates = require "./src/predicates"
-local func = require "./src/func"
+local predicates = require "luafp.predicates"
+local func = require "luafp.func"
 
 -- TODO/FIXME: this is duplicated in Collection.lua for now as well
 local function length(list)

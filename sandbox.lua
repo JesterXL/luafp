@@ -91,16 +91,16 @@ end
 -- end
 -- print("holder:", holder)
 
-local curry = require './src/func'.curry
-local function add(a, b)
-    return a + b
-end
+-- local curry = require './src/func'.curry
+-- local function add(a, b)
+--     return a + b
+-- end
 
--- print(add(1, 1))
+-- -- print(add(1, 1))
 
-local addCurry = curry(add) 
-print(addCurry(20)(40))
-print(addCurry(20, 40))
+-- local addCurry = curry(add) 
+-- print(addCurry(20)(40))
+-- print(addCurry(20, 40))
 -- print("result:", result)
 -- print(addCurry(1)(1))
 -- print("-----")
@@ -179,9 +179,9 @@ print(addCurry(20, 40))
 -- print(get('type.weapons[1].damage')(turtle))
 
 
--- local isNil = require './src/predicates'.isNil
--- print(isNil(nil)) -- true
--- print(isNil('cow')) -- false
+local isNil = require 'luafp.predicates'.isNil
+print(isNil(nil)) -- true
+print(isNil('cow')) -- false
 
 -- local isBoolean = require './src/predicates'.isBoolean
 -- print(isBoolean(nil)) -- false

@@ -1,4 +1,4 @@
-local object = require './src/object'
+local object = require 'luafp.object'
 
 describe("src/object.lua", function()
     describe('has', function()

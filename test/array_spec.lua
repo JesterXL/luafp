@@ -1,4 +1,4 @@
-local array = require './src/array'
+local array = require 'luafp.array'
 
 describe("src/array.lua", function()
     describe('difference2', function()

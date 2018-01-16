@@ -8,7 +8,7 @@
 -- @module luaFP.reactive
 -- @alias reactive
 local reactive = {}
-local array = require "./src/array"
+local array = require "luafp.array"
 
 local random = math.random
 
