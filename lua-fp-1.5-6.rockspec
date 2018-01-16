@@ -1,8 +1,8 @@
 package = "lua-fp"
-version = "1.5-5"
+version = "1.5-6"
 source = {
-   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.5.tar.gz",
-   tag = "v1.5.5"
+   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.6.tar.gz",
+   tag = "v1.5.6"
 }
 description = {
    summary = "Functional Programming helper functions for Lua.",
@@ -22,7 +22,7 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-       luafp = 'lua-fp-1.5.5/src/lua-fp.lua'
+       luafp = 'lua-fp-1.5.6/src/lua-fp.lua'
    },
-   copy_directories = { "lua-fp-1.5.5/doc", "lua-fp-1.5.5/test" }
+   copy_directories = { "lua-fp-1.5.6/doc", "lua-fp-1.5.6/test" }
 }
