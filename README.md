@@ -2,3 +2,5 @@
 
 # lua-fp
 Functional Programming helper functions for Lua.
+
+[API Documentation](doc/index.html)
