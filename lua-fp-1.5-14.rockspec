@@ -1,8 +1,8 @@
 package = "lua-fp"
-version = "1.5-13"
+version = "1.5-14"
 source = {
-   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.13.tar.gz",
-   dir = 'lua-fp-v1.5.13'
+   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.14.tar.gz",
+   dir = 'lua-fp-v1.5.14'
 }
 description = {
    summary = "Functional Programming helper functions for Lua.",
@@ -21,14 +21,14 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-    ['luafp.array'] = 'lua-fp-v1.5.13/luafp/array.lua',
-    ['luafp.collection'] = 'lua-fp-v1.5.13/luafp/collection.lua',
-    ['luafp.func'] = 'lua-fp-v1.5.13/luafp/func.lua',
-    ['luafp.object'] = 'lua-fp-v1.5.13/luafp/object.lua',
-    ['luafp.predicates'] = 'lua-fp-v1.5.13/luafp/predicates.lua',
-    ['luafp.reactive'] = 'lua-fp-v1.5.13/luafp/reactive.lua',
-    ['luafp.util'] = 'lua-fp-v1.5.13/luafp/util.lua'
-   }
+    ['luafp.array'] = 'luafp/array.lua',
+    ['luafp.collection'] = 'luafp/collection.lua',
+    ['luafp.func'] = 'luafp/func.lua',
+    ['luafp.object'] = 'luafp/object.lua',
+    ['luafp.predicates'] = 'luafp/predicates.lua',
+    ['luafp.reactive'] = 'luafp/reactive.lua',
+    ['luafp.util'] = 'luafp/util.lua'
+   },
    copy_directories = {
       "doc", "tests"
    }
