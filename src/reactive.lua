@@ -8,7 +8,7 @@
 -- @module luaFP.reactive
 -- @alias reactive
 local reactive = {}
-local list = require "./src/list"
+local array = require "./src/array"
 
 local random = math.random
 
@@ -58,7 +58,7 @@ local function getSubject()
     function subject:subscribe(next, error, complete)
         local id = uuid()
         local removeIt = function()
-            local index = list.findIndex(0)(function(item) return item.id == id end)(subject.listeners)
+            local index = array.findIndex(0)(function(item) return item.id == id end)(subject.listeners)
             table.remove(subject.listeners, index)
         end
         table.insert(subject.listeners, {

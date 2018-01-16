@@ -5,7 +5,7 @@ local luaFP = {}
 
 local collection = require "./src/collection"
 local func = require "./src/func"
-local list = require "./src/list"
+local array = require "./src/array"
 local object = require "./src/object"
 local predicates = require "./src/predicates"
 local reactive = require "./src/reactive"
@@ -13,7 +13,7 @@ local util = require "./src/util"
 
 luaFP.collection = collection
 luaFP.func = func
-luaFP.list = list
+luaFP.array = array
 luaFP.object = object
 luaFP.predicates = predicates
 luaFP.util = util
