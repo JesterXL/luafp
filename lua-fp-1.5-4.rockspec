@@ -1,8 +1,8 @@
 package = "lua-fp"
-version = "1.5-3"
+version = "1.5-4"
 source = {
-   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.3.tar.gz",
-   tag = "v1.5.3"
+   url = "https://github.com/JesterXL/lua-fp/archive/v1.5.4.tar.gz",
+   tag = "v1.5.4"
 }
 description = {
    summary = "Functional Programming and list comprehension helper functions for Lua.",
@@ -20,7 +20,7 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-       luafp = 'src/luafp.lua'
+       luafp = 'lua-fp-1.5.4/src/luafp.lua'
    },
    copy_directories = { "doc", "test" }
 }
