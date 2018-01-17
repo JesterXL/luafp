@@ -1,5 +1,5 @@
 --- Lua FP array module
--- @module luaFP.array
+-- @module luafp.array
 -- @alias array
 local array = {}
 
@@ -23,7 +23,7 @@ end
 -- @param list List you wish to search through
 -- @return index 0 or above if it found it, -1 if it did not
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- cowIndex = list.indexOf(1, 'Cow', names)
 -- print(cowIndex) -- 3
@@ -50,7 +50,7 @@ end
 -- @param list List you wish to search through
 -- @return index 0 or above if it found it, -1 if it did not
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- isCow = function(o) return o == 'Cow' end
 -- cowIndex = list.fromIndex(1, isCow, names)
@@ -82,7 +82,7 @@ end
 -- @param list List you wish to search through
 -- @return value The item in the list that was found, else nil
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- isCow = function(o) return o == 'Cow' end
 -- cow = list.find(1, isCow, names)
@@ -112,7 +112,7 @@ end
 -- @param list List you want the 1st item from
 -- @return value First item in the list, else nil
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- print(list.head(names)) -- Jesse
 function array.head(list)
@@ -126,7 +126,7 @@ end
 -- @param list List you want the last item from
 -- @return value Last item in the list, else nil
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- print(list.last(names)) -- Cow
 function array.last(list)
@@ -141,7 +141,7 @@ end
 -- @param list List you want the tail from
 -- @return value tail of the list, else nil
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- print(list.tail(names)) -- {'Brandy', 'Cow'}
 function array.tail(list)
@@ -162,7 +162,7 @@ end
 -- @param list List you want the initial from
 -- @return value initial of the list, else nil
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- print(list.initial(names)) -- {'Jesse', 'Brandy'}
 function array.initial(list)
@@ -184,7 +184,7 @@ end
 -- @param values Second list to compare against the first
 -- @return differences A new list containing the differences
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- names = {'Jesse', 'Brandy', 'Cow'}
 -- wat = {'Cow'}
 -- print(list.difference2(names, wat)) -- {'Jesse', 'Brandy'}
@@ -214,7 +214,7 @@ end
 -- @param list you want to insert values into
 -- @return filled Your mutated list with values in it
 -- @return error String error message if parameter validation failed
--- @usage local list = require 'luaFP'.list
+-- @usage local list = require 'luafp/list'
 -- SpiceGirls = {}
 -- print(list.file('ziggyZigAh', 1, 3, SpiceGirls)) -- {'ziggyZigAh', 'ziggyZigAh', 'ziggyZigAh'}
 function array.fill(value, startIndex, endIndex, list)
@@ -251,7 +251,7 @@ end
 -- @param list list which contains other list you wish to flatten
 -- @return flattened List with 1 level of flattening done
 -- @return error String error message if parameter validation failed
--- @usage local flatten = require 'luaFP'.flatten
+-- @usage local flatten = require 'luafp/list'.flatten
 -- peeps = { {'Jesse', 'Dat Lightning'}, {'Cow', 'Cheese'} }
 -- print(flatten(peeps) -- {'Jesse', 'Dat Lightning', 'Cow', 'Cheese'}
 function array.flatten(list)

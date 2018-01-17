@@ -1,5 +1,5 @@
 --- Lua FP object module.
--- @module luaFP.object
+-- @module luafp.object
 -- @alias object
 local object = {}
 
@@ -65,7 +65,7 @@ end
 -- @param o table that might contain the property name
 -- @return yesOrNo true if it found it, false if it was nil
 -- @return error String error message if parameter validation failed
--- @usage local has = require 'luaFP'.object.has
+-- @usage local has = require 'luafp.object'.has
 -- turtle = {firstName: 'Raphael', weapon: 'Sai'}
 -- print(has('weapon', turtle) -- true
 function object.has(path, o)
@@ -94,7 +94,7 @@ end
 -- @param o table that might contain the path name
 -- @return value value found at the path, else nil
 -- @return error String error message if parameter validation failed
--- @usage local has = require 'luaFP'.object.has
+-- @usage local has = require 'luafp.object'.has
 -- turtle = {
 --     firstName = 'Raphael', 
 --     type = {
@@ -140,7 +140,7 @@ end
 -- @param o table that might contain the path name
 -- @return value value found at the path, else your provided defaultValue
 -- @return error String error message if parameter validation failed
--- @usage local getOr = require 'luaFP'.object.getOr
+-- @usage local getOr = require 'luafp.object'.getOr
 -- turtle = {
 --     firstName = 'Raphael', 
 --     type = {

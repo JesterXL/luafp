@@ -1,5 +1,5 @@
 --- Lua FP collections module. All functions that have more than 1 parameter are curried.
--- @module luaFP.collection
+-- @module luafp.collection
 -- @alias collection
 local collection = {}
 
@@ -10,7 +10,7 @@ local predicates = require "luafp.predicates"
 -- @param list a table with items in it
 -- @return integer length of the table
 -- @return string error message if parameter validation failed
--- @usage local collection = require 'luaFP'.collection
+-- @usage local collection = require 'luafp/collection'
 -- cows = {'uno', 'dos', 'tres'}
 -- print(collection.length(cows)) -- 3
 function collection.length(list)
@@ -27,7 +27,7 @@ end
 -- @param list Table of items you wish to map to someting else.
 -- @return list has your mapped items in it
 -- @return string error message if parameter validation failed
--- @usage local collection = require 'luaFP'.collection
+-- @usage local collection = require 'luafp/collection'
 -- ingredients = {'🐮', '🥔', '🐔', '🌽'}
 -- function cook(item)
 --     if item == '🐮' then
@@ -62,7 +62,7 @@ end
 -- @param list Table of items you wish to filter
 -- @return list has your filtered items in it, if any
 -- @return string error message if parameter validation failed
--- @usage local collection = require 'luaFP'.collection
+-- @usage local collection = require 'luafp/collection'
 -- food = {'🍔', '🍟', '🍗', '🍿'}
 -- function isVegetarian(item)
 --     if item == '🍔' then
@@ -102,7 +102,7 @@ end
 -- @param list Table of items you wish to reduce.
 -- @return value Whatever the accumulator value is computed from your reducer.
 -- @return string error message if parameter validation failed
--- @usage local collection = require 'luaFP'.collection
+-- @usage local collection = require 'luafp/collection'
 -- food = {'🍔', '🍟', '🍗', '🍿'}
 -- function eat(acc, item)
 --     return '💩'
@@ -129,7 +129,7 @@ end
 -- @param list Table of items you wish to verify.
 -- @return value true or false
 -- @return string error message if parameter validation failed
--- @usage local collection = require 'luaFP'.collection
+-- @usage local collection = require 'luafp/collection'
 -- animals = {'🐮', '🐔', '🐷'}
 -- function isAnimal(item)
 --     if item == '🐷' or item == '🐔' or item == '🐷' then
@@ -161,7 +161,7 @@ end
 -- @param list Table of items you wish to verify.
 -- @return value true or false
 -- @return string error message if parameter validation failed
--- @usage local collection = require 'luaFP'.collection
+-- @usage local collection = require 'luafp/collection'
 -- items = {'🐮', '🐔', '🐷', '🌽'}
 -- function isPlant(item)
 --     if item == '🌽' then

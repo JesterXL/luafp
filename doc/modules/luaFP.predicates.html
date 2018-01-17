@@ -38,21 +38,20 @@
 
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><a href="../modules/luaFP.array.html">luaFP.array</a></li>
-  <li><a href="../modules/luaFP.collection.html">luaFP.collection</a></li>
-  <li><a href="../modules/luaFP.func.html">luaFP.func</a></li>
-  <li><a href="../modules/luaFP.html">luaFP</a></li>
-  <li><a href="../modules/luaFP.object.html">luaFP.object</a></li>
-  <li><strong>luaFP.predicates</strong></li>
-  <li><a href="../modules/luaFP.reactive.html">luaFP.reactive</a></li>
-  <li><a href="../modules/luaFP.util.html">luaFP.util</a></li>
+  <li><a href="../modules/luafp.array.html">luafp.array</a></li>
+  <li><a href="../modules/luafp.collection.html">luafp.collection</a></li>
+  <li><a href="../modules/luafp.func.html">luafp.func</a></li>
+  <li><a href="../modules/luafp.object.html">luafp.object</a></li>
+  <li><strong>luafp.predicates</strong></li>
+  <li><a href="../modules/luafp.reactive.html">luafp.reactive</a></li>
+  <li><a href="../modules/luafp.util.html">luafp.util</a></li>
 </ul>
 
 </div>
 
 <div id="content">
 
-<h1>Module <code>luaFP.predicates</code></h1>
+<h1>Module <code>luafp.predicates</code></h1>
 <p>Lua FP predicates module.</p>
 <p></p>
 
@@ -133,7 +132,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isNil = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isNil
+        <pre class="example"><span class="keyword">local</span> isNil = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isNil
 <span class="global">print</span>(isNil(<span class="keyword">nil</span>)) <span class="comment">-- true
 </span><span class="global">print</span>(isNil(<span class="string">'cow'</span>)) <span class="comment">-- false</span></pre>
     </ul>
@@ -164,7 +163,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isBoolean = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isBoolean
+        <pre class="example"><span class="keyword">local</span> isBoolean = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isBoolean
 <span class="global">print</span>(isBoolean(<span class="keyword">nil</span>)) <span class="comment">-- false
 </span><span class="global">print</span>(isBoolean()) <span class="comment">-- false
 </span><span class="global">print</span>(isBoolean(<span class="string">'cow'</span>)) <span class="comment">-- false
@@ -199,7 +198,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isNumber = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isNumber
+        <pre class="example"><span class="keyword">local</span> isNumber = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isNumber
 <span class="global">print</span>(isNumber(<span class="number">1</span>)) <span class="comment">-- true
 </span><span class="global">print</span>(isNumber(<span class="number">1.23</span>)) <span class="comment">-- true
 </span><span class="global">print</span>(isNumber(<span class="number">1.0</span>)) <span class="comment">-- true
@@ -232,7 +231,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isString = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isString
+        <pre class="example"><span class="keyword">local</span> isString = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isString
 <span class="global">print</span>(isString(<span class="string">'sup'</span>)) <span class="comment">-- true
 </span><span class="global">print</span>(isString(<span class="string">''</span>)) <span class="comment">-- true
 </span><span class="global">print</span>(isString(<span class="number">1</span>)) <span class="comment">-- false</span></pre>
@@ -264,7 +263,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isUserdata = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isUserdata
+        <pre class="example"><span class="keyword">local</span> isUserdata = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isUserdata
 <span class="global">print</span>(isUserdata(RobloxCharacter)) <span class="comment">-- true
 </span><span class="global">print</span>(isUserdata({})) <span class="comment">-- false
 </span><span class="global">print</span>(isUserdata(<span class="number">1</span>)) <span class="comment">-- false</span></pre>
@@ -296,7 +295,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isFunction = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isFunction
+        <pre class="example"><span class="keyword">local</span> isFunction = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isFunction
 <span class="global">print</span>(isFunction(<span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>)) <span class="comment">-- true
 </span><span class="keyword">local</span> cow = <span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>
 <span class="global">print</span>(isFunction(cow)) <span class="comment">-- true
@@ -332,7 +331,7 @@ thing.sup = <span class="keyword">function</span>() <span class="keyword">return
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isThread = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isThread
+        <pre class="example"><span class="keyword">local</span> isThread = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isThread
 <span class="keyword">function</span> blade()
     <span class="global">print</span>(<span class="string">"blood"</span>)
     <span class="global">coroutine</span>.yeild()
@@ -371,7 +370,7 @@ co = <span class="global">coroutine</span>.create(blade)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> isTable = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isTable
+        <pre class="example"><span class="keyword">local</span> isTable = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isTable
 <span class="global">print</span>(isTable(<span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>)) <span class="comment">-- false
 </span><span class="global">print</span>(isTable({})) <span class="comment">-- true</span></pre>
     </ul>
@@ -402,7 +401,7 @@ co = <span class="global">coroutine</span>.create(blade)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> exists = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.exists
+        <pre class="example"><span class="keyword">local</span> exists = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.exists
 <span class="global">print</span>(exists(<span class="keyword">function</span>() <span class="keyword">return</span> <span class="keyword">true</span> <span class="keyword">end</span>)) <span class="comment">-- true
 </span><span class="global">print</span>(exists({})) <span class="comment">-- true
 </span><span class="global">print</span>(exists()) <span class="comment">-- false
@@ -435,7 +434,7 @@ co = <span class="global">coroutine</span>.create(blade)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> exiisCowts = <span class="global">require</span> <span class="string">'luaFP'</span>.predicates.isCow
+        <pre class="example"><span class="keyword">local</span> exiisCowts = <span class="global">require</span> <span class="string">'luafp.predicates'</span>.isCow
 <span class="global">print</span>(isCow(<span class="string">'cow'</span>) <span class="comment">-- true
 </span><span class="global">print</span>(isCow(<span class="string">'🐮'</span>)) <span class="comment">-- true
 </span><span class="global">print</span>(isCow(<span class="string">'Jesse'</span>)) <span class="comment">-- false</span></pre>
@@ -449,7 +448,7 @@ co = <span class="global">coroutine</span>.create(blade)
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2018-01-15 18:36:49 </i>
+<i style="float:right;">Last updated 2018-01-17 09:26:53 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

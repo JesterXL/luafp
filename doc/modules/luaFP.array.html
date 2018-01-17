@@ -38,21 +38,20 @@
 
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><strong>luaFP.array</strong></li>
-  <li><a href="../modules/luaFP.collection.html">luaFP.collection</a></li>
-  <li><a href="../modules/luaFP.func.html">luaFP.func</a></li>
-  <li><a href="../modules/luaFP.html">luaFP</a></li>
-  <li><a href="../modules/luaFP.object.html">luaFP.object</a></li>
-  <li><a href="../modules/luaFP.predicates.html">luaFP.predicates</a></li>
-  <li><a href="../modules/luaFP.reactive.html">luaFP.reactive</a></li>
-  <li><a href="../modules/luaFP.util.html">luaFP.util</a></li>
+  <li><strong>luafp.array</strong></li>
+  <li><a href="../modules/luafp.collection.html">luafp.collection</a></li>
+  <li><a href="../modules/luafp.func.html">luafp.func</a></li>
+  <li><a href="../modules/luafp.object.html">luafp.object</a></li>
+  <li><a href="../modules/luafp.predicates.html">luafp.predicates</a></li>
+  <li><a href="../modules/luafp.reactive.html">luafp.reactive</a></li>
+  <li><a href="../modules/luafp.util.html">luafp.util</a></li>
 </ul>
 
 </div>
 
 <div id="content">
 
-<h1>Module <code>luaFP.array</code></h1>
+<h1>Module <code>luafp.array</code></h1>
 <p>Lua FP array module</p>
 <p></p>
 
@@ -141,7 +140,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 cowIndex = list.indexOf(<span class="number">1</span>, <span class="string">'Cow'</span>, names)
 <span class="global">print</span>(cowIndex) <span class="comment">-- 3</span></pre>
@@ -181,7 +180,7 @@ cowIndex = list.indexOf(<span class="number">1</span>, <span class="string">'Cow
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 isCow = <span class="keyword">function</span>(o) <span class="keyword">return</span> o == <span class="string">'Cow'</span> <span class="keyword">end</span>
 cowIndex = list.fromIndex(<span class="number">1</span>, isCow, names)
@@ -222,7 +221,7 @@ cowIndex = list.fromIndex(<span class="number">1</span>, isCow, names)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 isCow = <span class="keyword">function</span>(o) <span class="keyword">return</span> o == <span class="string">'Cow'</span> <span class="keyword">end</span>
 cow = list.find(<span class="number">1</span>, isCow, names)
@@ -257,7 +256,7 @@ cow = list.find(<span class="number">1</span>, isCow, names)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 <span class="global">print</span>(list.head(names)) <span class="comment">-- Jesse</span></pre>
     </ul>
@@ -290,7 +289,7 @@ names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</spa
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 <span class="global">print</span>(list.last(names)) <span class="comment">-- Cow</span></pre>
     </ul>
@@ -323,7 +322,7 @@ names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</spa
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 <span class="global">print</span>(list.tail(names)) <span class="comment">-- {'Brandy', 'Cow'}</span></pre>
     </ul>
@@ -356,7 +355,7 @@ names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</spa
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 <span class="global">print</span>(list.initial(names)) <span class="comment">-- {'Jesse', 'Brandy'}</span></pre>
     </ul>
@@ -392,7 +391,7 @@ names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</spa
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 names = {<span class="string">'Jesse'</span>, <span class="string">'Brandy'</span>, <span class="string">'Cow'</span>}
 wat = {<span class="string">'Cow'</span>}
 <span class="global">print</span>(list.difference2(names, wat)) <span class="comment">-- {'Jesse', 'Brandy'}</span></pre>
@@ -435,7 +434,7 @@ wat = {<span class="string">'Cow'</span>}
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luaFP'</span>.list
+        <pre class="example"><span class="keyword">local</span> list = <span class="global">require</span> <span class="string">'luafp/list'</span>
 SpiceGirls = {}
 <span class="global">print</span>(list.file(<span class="string">'ziggyZigAh'</span>, <span class="number">1</span>, <span class="number">3</span>, SpiceGirls)) <span class="comment">-- {'ziggyZigAh', 'ziggyZigAh', 'ziggyZigAh'}</span></pre>
     </ul>
@@ -468,7 +467,7 @@ SpiceGirls = {}
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> flatten = <span class="global">require</span> <span class="string">'luaFP'</span>.flatten
+        <pre class="example"><span class="keyword">local</span> flatten = <span class="global">require</span> <span class="string">'luafp/list'</span>.flatten
 peeps = { {<span class="string">'Jesse'</span>, <span class="string">'Dat Lightning'</span>}, {<span class="string">'Cow'</span>, <span class="string">'Cheese'</span>} }
 <span class="global">print</span>(flatten(peeps) <span class="comment">-- {'Jesse', 'Dat Lightning', 'Cow', 'Cheese'}</span></pre>
     </ul>
@@ -481,7 +480,7 @@ peeps = { {<span class="string">'Jesse'</span>, <span class="string">'Dat Lightn
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2018-01-15 18:36:49 </i>
+<i style="float:right;">Last updated 2018-01-17 09:26:53 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

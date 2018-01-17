@@ -1,5 +1,5 @@
 --- Lua FP functions module
--- @module luaFP.func
+-- @module luafp.func
 -- @alias func
 local func = {}
 
@@ -13,10 +13,9 @@ end
 
 --- Takes your function arity (number of parameters) and a function, and turns it into a curried function. NOTE: We do not handle scope for you.
 -- Reference: https://gist.githubusercontent.com/jcmoyer/5571987/raw/3064bc4df0f4c027843e62f3c6581c3ce3cf5217/currying.lua
--- @param num_args how many parameters your function takes (the arity). This assumes no default parameters as those don't really work that well with curried functions.
--- @param func The function you wish to turn into a curried function.
+-- @param f The function you wish to turn into a curried function.
 -- @return curriedFunk Your curried function.
--- @usage local curry = require 'lua-fp'.func.curry
+-- @usage local curry = require 'luafp/func'.curry
 -- function add(a, b) return a + b end
 -- addCurry = func.curry(add)
 -- add1 = addCurry(1)
@@ -48,7 +47,7 @@ end
 --- Takes a predicate function and reverse the value returned. If the function returns true, it'll now return false. If the function returns false, it'll now return true.
 -- @param func Your predicate function, a function that only returns true or false. Parameter count doesn't matter, we'll unpack and call it for you.
 -- @return negated Your reversed predicate function.
--- @usage local func = require 'lua-fp'.negate
+-- @usage local func = require 'luafp/func'.negate
 -- function isCow(o) return o == 'cow' end
 -- print(isCow('cow')) -- true
 -- isNotCowLulz = func.negate(isCow)

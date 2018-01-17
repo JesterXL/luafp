@@ -5,7 +5,7 @@
 -- end)
 
 --- Lua FP reactive module. Work in progress...
--- @module luaFP.reactive
+-- @module luafp.reactive
 -- @alias reactive
 local reactive = {}
 local array = require "luafp.array"

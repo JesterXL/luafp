@@ -38,21 +38,20 @@
 
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><a href="../modules/luaFP.array.html">luaFP.array</a></li>
-  <li><strong>luaFP.collection</strong></li>
-  <li><a href="../modules/luaFP.func.html">luaFP.func</a></li>
-  <li><a href="../modules/luaFP.html">luaFP</a></li>
-  <li><a href="../modules/luaFP.object.html">luaFP.object</a></li>
-  <li><a href="../modules/luaFP.predicates.html">luaFP.predicates</a></li>
-  <li><a href="../modules/luaFP.reactive.html">luaFP.reactive</a></li>
-  <li><a href="../modules/luaFP.util.html">luaFP.util</a></li>
+  <li><a href="../modules/luafp.array.html">luafp.array</a></li>
+  <li><strong>luafp.collection</strong></li>
+  <li><a href="../modules/luafp.func.html">luafp.func</a></li>
+  <li><a href="../modules/luafp.object.html">luafp.object</a></li>
+  <li><a href="../modules/luafp.predicates.html">luafp.predicates</a></li>
+  <li><a href="../modules/luafp.reactive.html">luafp.reactive</a></li>
+  <li><a href="../modules/luafp.util.html">luafp.util</a></li>
 </ul>
 
 </div>
 
 <div id="content">
 
-<h1>Module <code>luaFP.collection</code></h1>
+<h1>Module <code>luafp.collection</code></h1>
 <p>Lua FP collections module.</p>
 <p> All functions that have more than 1 parameter are curried.</p>
 
@@ -119,7 +118,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luafp/collection'</span>
 cows = {<span class="string">'uno'</span>, <span class="string">'dos'</span>, <span class="string">'tres'</span>}
 <span class="global">print</span>(collection.length(cows)) <span class="comment">-- 3</span></pre>
     </ul>
@@ -155,7 +154,7 @@ cows = {<span class="string">'uno'</span>, <span class="string">'dos'</span>, <s
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luafp/collection'</span>
 ingredients = {<span class="string">'🐮'</span>, <span class="string">'🥔'</span>, <span class="string">'🐔'</span>, <span class="string">'🌽'</span>}
 <span class="keyword">function</span> cook(item)
     <span class="keyword">if</span> item == <span class="string">'🐮'</span> <span class="keyword">then</span>
@@ -204,7 +203,7 @@ results = collection.map(ifCowTurnToChicken, ingredients)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luafp/collection'</span>
 food = {<span class="string">'🍔'</span>, <span class="string">'🍟'</span>, <span class="string">'🍗'</span>, <span class="string">'🍿'</span>}
 <span class="keyword">function</span> isVegetarian(item)
     <span class="keyword">if</span> item == <span class="string">'🍔'</span> <span class="keyword">then</span>
@@ -256,7 +255,7 @@ results = collection.filter(isVegetarian, food)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luafp/collection'</span>
 food = {<span class="string">'🍔'</span>, <span class="string">'🍟'</span>, <span class="string">'🍗'</span>, <span class="string">'🍿'</span>}
 <span class="keyword">function</span> eat(acc, item)
     <span class="keyword">return</span> <span class="string">'💩'</span>
@@ -297,7 +296,7 @@ results = collection.reduce(eat, food)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luafp/collection'</span>
 animals = {<span class="string">'🐮'</span>, <span class="string">'🐔'</span>, <span class="string">'🐷'</span>}
 <span class="keyword">function</span> isAnimal(item)
     <span class="keyword">if</span> item == <span class="string">'🐷'</span> <span class="keyword">or</span> item == <span class="string">'🐔'</span> <span class="keyword">or</span> item == <span class="string">'🐷'</span> <span class="keyword">then</span>
@@ -341,7 +340,7 @@ allAnimals = collection.every(isAnimal, animals)
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luaFP'</span>.collection
+        <pre class="example"><span class="keyword">local</span> collection = <span class="global">require</span> <span class="string">'luafp/collection'</span>
 items = {<span class="string">'🐮'</span>, <span class="string">'🐔'</span>, <span class="string">'🐷'</span>, <span class="string">'🌽'</span>}
 <span class="keyword">function</span> isPlant(item)
     <span class="keyword">if</span> item == <span class="string">'🌽'</span> <span class="keyword">then</span>
@@ -362,7 +361,7 @@ hasAPlant = collection.some(isPlant, items)
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2018-01-15 18:36:49 </i>
+<i style="float:right;">Last updated 2018-01-17 09:26:53 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
