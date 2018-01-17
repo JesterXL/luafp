@@ -1,4 +1,4 @@
---- Lua FP predicates module.
+--- luafp predicates module.
 -- @module luafp.predicates
 -- @alias predicates
 local predicates = {}

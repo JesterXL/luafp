@@ -4,7 +4,7 @@
 -- 	end)
 -- end)
 
---- Lua FP reactive module. Work in progress...
+--- luafp reactive module. Work in progress...
 -- @module luafp.reactive
 -- @alias reactive
 local reactive = {}

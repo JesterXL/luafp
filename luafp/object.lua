@@ -1,4 +1,4 @@
---- Lua FP object module.
+--- luafp object module.
 -- @module luafp.object
 -- @alias object
 local object = {}

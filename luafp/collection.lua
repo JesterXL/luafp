@@ -1,4 +1,4 @@
---- Lua FP collections module. All functions that have more than 1 parameter are curried.
+--- luafp collections module. All functions that have more than 1 parameter are curried.
 -- @module luafp.collection
 -- @alias collection
 local collection = {}

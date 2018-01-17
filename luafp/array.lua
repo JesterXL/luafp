@@ -1,4 +1,4 @@
---- Lua FP array module
+--- luafp array module
 -- @module luafp.array
 -- @alias array
 local array = {}

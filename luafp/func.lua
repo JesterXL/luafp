@@ -1,4 +1,4 @@
---- Lua FP functions module
+--- luafp functions module
 -- @module luafp.func
 -- @alias func
 local func = {}

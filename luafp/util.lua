@@ -1,4 +1,4 @@
---- Lua FP util module.
+--- luafp util module.
 -- @module luafp.util
 -- @alias util
 local util = {}
