@@ -3,4 +3,4 @@
 # lua-fp
 Functional Programming helper functions for Lua.
 
-[API Documentation](https://jesterxl.github.io/luafp/doc/index.html)
+[API Documentation](https://jesterxl.github.io/luafp/doc/)
