@@ -123,7 +123,7 @@ function Result:fromNullable(o)
 end
 
 function Result:try(f)
-    local results = pcall(f)
+    local results = {pcall(f)}
     if results[1] == true then
         table.remove(results)
         return Ok(results)

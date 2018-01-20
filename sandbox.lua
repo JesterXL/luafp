@@ -446,3 +446,17 @@ end
 print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2))
 print(Error('wat'):chain(tryHardStuff1):chain(tryHardStuff2))
 print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2):chain(tryHardStuff3))
+
+print(" ")
+function itsOk()
+    return "we good"
+end
+function itsBoom()
+    return error('holy pow')
+end
+function itsYourBoom()
+    return error('holy pow', 2)
+end
+print(Result:try(itsOk))
+print(Result:try(itsBoom))
+print(Result:try(itsYourBoom))
