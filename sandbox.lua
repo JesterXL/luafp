@@ -269,8 +269,8 @@ end
 --     end
 -- end
 
-cow = {firstName = "Jesse"}
-chicken = {}
+-- cow = {firstName = "Jesse"}
+-- chicken = {}
 
 -- print(has('firstName', cow))
 -- print(has('firstName', chicken))
@@ -397,66 +397,75 @@ chicken = {}
 -- print(Just(1):orElse(getError))
 -- print(Nothing():orElse(getError))
 
-local Result = require 'luafp.Result'
-local Ok = Result.Ok
-local Error = Result.Error
-print(Result.Ok(1))
-print(Result.Error('boom'))
-print(Result.Ok({1, 2}))
-print(Result.Ok({firstName="Jesse", lastName="Warden"}))
+-- local Result = require 'luafp.Result'
+-- local Ok = Result.Ok
+-- local Error = Result.Error
+-- print(Result.Ok(1))
+-- print(Result.Error('boom'))
+-- print(Result.Ok({1, 2}))
+-- print(Result.Ok({firstName="Jesse", lastName="Warden"}))
 
-print(" ")
-function add1(o)
-    return o + 1
-end
-print(Result.Ok(1):map(add1))
-print(Result.Error('boom'):map(add1))
+-- print(" ")
+-- function add1(o)
+--     return o + 1
+-- end
+-- print(Result.Ok(1):map(add1))
+-- print(Result.Error('boom'):map(add1))
 
-print(" ")
-print(Ok(1):getOrElse('cow boom'))
-print(Error('boom'):getOrElse('cow boom'))
+-- print(" ")
+-- print(Ok(1):getOrElse('cow boom'))
+-- print(Error('boom'):getOrElse('cow boom'))
 
-print(" ")
-function addBoom(o)
-    return o .. ' b00m!'
-end
-print(Ok(1):orElse('aw man'):mapError(addBoom))
-print(Error('ka'):mapError(addBoom))
+-- print(" ")
+-- function addBoom(o)
+--     return o .. ' b00m!'
+-- end
+-- print(Ok(1):orElse('aw man'):mapError(addBoom))
+-- print(Error('ka'):mapError(addBoom))
 
-print(" ")
-print(Ok(1):matchWith({
-    Error = function(tbl) return tbl.value end,
-    Ok = function(tbl) return tbl.value end
-}))
-print(Error('dat boom tho'):matchWith({
-    Error = function(tbl) return tbl.value end,
-    Ok = function(tbl) return tbl.value end
-}))
+-- print(" ")
+-- print(Ok(1):matchWith({
+--     Error = function(tbl) return tbl.value end,
+--     Ok = function(tbl) return tbl.value end
+-- }))
+-- print(Error('dat boom tho'):matchWith({
+--     Error = function(tbl) return tbl.value end,
+--     Ok = function(tbl) return tbl.value end
+-- }))
 
-print(" ")
-function tryHardStuff1()
-    return Ok(1)
-end
-function tryHardStuff2(o)
-    return Ok(o + 1)
-end
-function tryHardStuff3(o)
-    return Error('boom done')
-end
-print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2))
-print(Error('wat'):chain(tryHardStuff1):chain(tryHardStuff2))
-print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2):chain(tryHardStuff3))
+-- print(" ")
+-- function tryHardStuff1()
+--     return Ok(1)
+-- end
+-- function tryHardStuff2(o)
+--     return Ok(o + 1)
+-- end
+-- function tryHardStuff3(o)
+--     return Error('boom done')
+-- end
+-- print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2))
+-- print(Error('wat'):chain(tryHardStuff1):chain(tryHardStuff2))
+-- print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2):chain(tryHardStuff3))
 
-print(" ")
-function itsOk()
-    return "we good"
+-- print(" ")
+-- function itsOk()
+--     return "we good"
+-- end
+-- function itsBoom()
+--     return error('holy pow')
+-- end
+-- function itsYourBoom()
+--     return error('holy pow', 2)
+-- end
+-- print(Result:try(itsOk))
+-- print(Result:try(itsBoom))
+-- print(Result:try(itsYourBoom))
+
+
+
+local curry = require 'luafp.func'.curry
+local function add(a, b)
+    return a + b
 end
-function itsBoom()
-    return error('holy pow')
-end
-function itsYourBoom()
-    return error('holy pow', 2)
-end
-print(Result:try(itsOk))
-print(Result:try(itsBoom))
-print(Result:try(itsYourBoom))
+
+print(add(1, nil))

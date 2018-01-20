@@ -7,7 +7,7 @@ local predicates = require "luafp.predicates"
 local func = require "luafp.func"
 
 -- TODO/FIXME: this is duplicated in Collection.lua for now as well
-local function length(list)
+function array.length(list)
     if predicates.isTable(list) == false then
         return 0, 'list is not a table'
     end
@@ -133,7 +133,7 @@ function array.last(list)
     if predicates.isTable(list) == false then
         return nil, 'list is not a table'
     end
-    local len = length(list)
+    local len = array.length(list)
     return list[len]
 end
 
@@ -149,7 +149,7 @@ function array.tail(list)
         return nil, 'list is not a table'
     end
 
-    if length(list) > 1 then
+    if array.length(list) > 1 then
         local cloned = {table.unpack(list)}
         table.remove(cloned, 1)
         return cloned
@@ -169,7 +169,7 @@ function array.initial(list)
     if predicates.isTable(list) == false then
         return nil, 'list is not a table'
     end
-    local listLength = length(list)
+    local listLength = array.length(list)
     if listLength > 1 then
         local cloned = {table.unpack(list)}
         table.remove(cloned, listLength)
@@ -218,9 +218,10 @@ end
 -- SpiceGirls = {}
 -- print(list.file('ziggyZigAh', 1, 3, SpiceGirls)) -- {'ziggyZigAh', 'ziggyZigAh', 'ziggyZigAh'}
 function array.fill(value, startIndex, endIndex, list)
-    if predicates.isNil(value) == true then
-        return nil, 'you cannot fill a Lua table with a bunch of nils as the last item to have nil is considered the end'
-    end
+    -- [jwarden 1.20.2018] Removing because currying prevents this.
+    -- if predicates.isNil(value) == true then
+    --     return nil, 'you cannot fill a Lua table with a bunch of nils as the last item to have nil is considered the end'
+    -- end
     if predicates.isNumber(startIndex) == false then
         return nil, 'startIndex is not a number'
     end

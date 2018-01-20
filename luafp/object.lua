@@ -7,9 +7,6 @@ local predicates = require 'luafp.predicates'
 local func = require 'luafp.func'
 
 local function splitString(inputstr, sep)
-    if sep == nil then
-            sep = "%s"
-    end
     local t={} ; i=1
     for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
             t[i] = str
@@ -19,9 +16,6 @@ local function splitString(inputstr, sep)
 end
 
 local function hasDots(path)
-    if predicates.isString(path) == false then
-        return false, 'path is not a string'
-    end
     local startIndex = string.find(path, '%.')
     return predicates.isNumber(startIndex)
 end
@@ -30,9 +24,9 @@ end
 -- first and last character to be [ and ], including middle
 -- to be a number. For now, just checking [.
 local function containsArrayAccessor(path)
-    if predicates.isString(path) == false then
-        return false, 'path is not a string'
-    end
+    -- if predicates.isString(path) == false then
+    --     return false, 'path is not a string'
+    -- end
     local startIndex = string.find(path, '%[')
     return predicates.isNumber(startIndex)
 end
@@ -72,16 +66,17 @@ function object.has(path, o)
     if predicates.isString(path) == false then
         return false, 'path is not a string, so nothing to check for'
     end
-    if predicates.isNil(o) == true then
-        return false, 'o is nil, so nothing to check for'
-    end
+    -- [jwarden 1.20.2018] NOTE: You can't fire this, even with pcall, because curry ignores nils.
+    -- if predicates.isNil(o) == true then
+    --     return false, 'o is nil, so nothing to check for'
+    -- end
     if hasDots(path) == true then
         local parsedPath = splitString(path, '.')
         local result, valueOrError = pcall(dig, parsedPath, o)
         if result == true then
             return predicates.exists(valueOrError) == true
         else
-            return nil
+            return false
         end
     else
         return predicates.exists(o[path]) == true
@@ -116,9 +111,10 @@ function object.get(path, o)
     if predicates.isString(path) == false then
         return nil, 'path is not a string, so nothing to get'
     end
-    if predicates.isNil(o) == true then
-        return nil, 'o is nil, so nothing to get'
-    end
+    -- [jwarden 1.20.2018] NOTE: You can't fire this, even with pcall, because curry ignores nils.
+    -- if predicates.isNil(o) == true then
+    --     return nil, 'o is nil, so nothing to get'
+    -- end
     if hasDots(path) == true then
         local parsedPath = splitString(path, '.')
         local result, valueOrError = pcall(dig, parsedPath, o)
@@ -162,9 +158,10 @@ function object.getOr(defaultValue, path, o)
     if predicates.isString(path) == false then
         return defaultValue, 'path is not a string, so nothing to get'
     end
-    if predicates.isNil(o) == true then
-        return defaultValue, 'o is nil, so nothing to get'
-    end
+    -- [jwarden 1.20.2018] NOTE: You can't fire this, even with pcall, because curry ignores nils.
+    -- if predicates.isNil(o) == true then
+    --     return defaultValue, 'o is nil, so nothing to get'
+    -- end
     if hasDots(path) == true then
         local parsedPath = splitString(path, '.')
         local result, valueOrError = pcall(dig, parsedPath, o)

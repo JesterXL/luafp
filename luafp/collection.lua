@@ -6,22 +6,6 @@ local collection = {}
 local func = require "luafp.func"
 local predicates = require "luafp.predicates"
 
---- length of a list, counts how many items are in a table.
--- @param list a table with items in it
--- @return integer length of the table
--- @return string error message if parameter validation failed
--- @usage local collection = require 'luafp/collection'
--- cows = {'uno', 'dos', 'tres'}
--- print(collection.length(cows)) -- 3
-function collection.length(list)
-    if predicates.isTable(list) == false then
-        return 0, 'list is not a table'
-    end
-    local count = 0
-    for _ in pairs(list) do count = count + 1 end
-    return count
-end
-
 --- takes a table in, runs the function on each item in the table, stores the results in a new table, and returns that table.
 -- @param func function that takes the item from the table, and whatever you return goes into the new table.
 -- @param list Table of items you wish to map to someting else.
@@ -45,10 +29,10 @@ end
 -- {'🍔', '🍟', '🍗', '🍿'}
 function collection.map(func, list)
     if predicates.isTable(list) == false then
-        return {}, 'list is not a table'
+        return nil, 'list is not a table'
     end
     if predicates.isFunction(func) == false then
-        return {}, 'func is not a function'
+        return nil, 'func is not a function'
     end
     local built = {}
     for i, v in ipairs(list) do
@@ -80,10 +64,10 @@ end
 -- {'🍟', '🍿'}
 function collection.filter(func, list)
     if predicates.isTable(list) == false then
-        return {}, 'list is not a table'
+        return nil, 'list is not a table'
     end
     if predicates.isFunction(func) == false then
-        return {}, 'func is not a function'
+        return nil, 'func is not a function'
     end
     local built = {}
     for i, v in ipairs(list) do
@@ -112,10 +96,10 @@ end
 -- {'💩'}
 function collection.reduce(func, accumulator, list)
     if predicates.isTable(list) == false then
-        return {}, 'list is not a table'
+        return nil, 'list is not a table'
     end
     if predicates.isFunction(func) == false then
-        return {}, 'func is not a function'
+        return nil, 'func is not a function'
     end
     local currentResult = accumulator
     for i, v in ipairs(list) do

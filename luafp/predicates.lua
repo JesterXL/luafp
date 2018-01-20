@@ -136,7 +136,7 @@ end
 -- print(isCow('cow') -- true
 -- print(isCow('🐮')) -- true
 -- print(isCow('Jesse')) -- false
-function isCow(o)
+function predicates.isCow(o)
     return o == 'cow' or o == '🐮'
 end
 

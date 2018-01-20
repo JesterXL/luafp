@@ -2,13 +2,13 @@
 busted -c test
 
 # generate coverage
-luacov
+# luacov
 
 # do... stuff with... report... or something
-luacov-console
+# luacov-console
 
 # show coverage
-luacov-console -s
+# luacov-console -s
 
 # does some magic
 # luacov-coveralls -t 97tePdW8ffhc1OED7xCnW2EuDd2nyCVQ3
