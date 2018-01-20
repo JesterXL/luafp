@@ -319,80 +319,130 @@ chicken = {}
 
 -- print(f(1, 3))
 
-local Maybe = require 'luafp.maybe'
-local Just = Maybe.Just
-local Nothing = Maybe.Nothing
+-- local Maybe = require 'luafp.maybe'
+-- local Just = Maybe.Just
+-- local Nothing = Maybe.Nothing
 
 
-local just1 = Just(1)
-print(just1)
-print(just1.value)
-print(just1:getOrElse('cow'))
-print(just1:matchWith({
-    Just = function(tbl) return tbl.value end,
-    Nothing = function() return 'nothing' end
-}))
-print(Just(1) == Just(1))
-print(Just(1) == 1)
-print(Just(1) == Nothing())
-print("Just:hasInstance(just1):", Just:hasInstance(just1))
+-- local just1 = Just(1)
+-- print(just1)
+-- print(just1.value)
+-- print(just1:getOrElse('cow'))
+-- print(just1:matchWith({
+--     Just = function(tbl) return tbl.value end,
+--     Nothing = function() return 'nothing' end
+-- }))
+-- print(Just(1) == Just(1))
+-- print(Just(1) == 1)
+-- print(Just(1) == Nothing())
+-- print("Just:hasInstance(just1):", Just:hasInstance(just1))
+
+-- print(" ")
+-- local nothing = Nothing()
+-- print(nothing)
+-- print(nothing.value)
+-- print(nothing:getOrElse('cow'))
+-- print(nothing:matchWith({
+--     Just = function(tbl) return tbl.value end,
+--     Nothing = function() return 'nothing' end
+-- }))
+-- print(Nothing() == Nothing())
+-- print("Nothing:hasInstance(nothing):", Nothing:hasInstance(nothing))
+-- print("Just:hasInstance(nothing):", Just:hasInstance(nothing))
+-- print("Nothing:hasInstance(just1):", Nothing:hasInstance(just1))
+
+-- print(" ")
+
+-- function add1(o)
+--     return o + 1
+-- end
+
+-- local just2 = Just(2)
+-- print(just2)
+-- print(just2:map(add1))
+-- local nothing2 = Nothing()
+-- print(nothing2)
+-- print(nothing2:map(add1))
+
+-- print(" ")
+
+-- function breakIt()
+--     return Nothing()
+-- end
+
+-- local just2 = Just(2)
+-- print(just2)
+-- -- print(just2:map(add1):map(breakIt))
+-- print(just2:map(add1):chain(breakIt))
+
+-- print(" ")
+
+-- function addJust1(value)
+--     return Just(value + 1)
+-- end
+
+-- function subtractJust5(value)
+--     return Just(value - 5)
+-- end
+
+-- print(just2:chain(addJust1):chain(subtractJust5))
+
+-- print(" ")
+-- print(" ** orElse ** ")
+
+-- function getError(o)
+--     return Just('error')
+-- end
+
+-- print(Just(1):orElse(getError))
+-- print(Nothing():orElse(getError))
+
+local Result = require 'luafp.Result'
+local Ok = Result.Ok
+local Error = Result.Error
+print(Result.Ok(1))
+print(Result.Error('boom'))
+print(Result.Ok({1, 2}))
+print(Result.Ok({firstName="Jesse", lastName="Warden"}))
 
 print(" ")
-local nothing = Nothing()
-print(nothing)
-print(nothing.value)
-print(nothing:getOrElse('cow'))
-print(nothing:matchWith({
-    Just = function(tbl) return tbl.value end,
-    Nothing = function() return 'nothing' end
-}))
-print(Nothing() == Nothing())
-print("Nothing:hasInstance(nothing):", Nothing:hasInstance(nothing))
-print("Just:hasInstance(nothing):", Just:hasInstance(nothing))
-print("Nothing:hasInstance(just1):", Nothing:hasInstance(just1))
-
-print(" ")
-
 function add1(o)
     return o + 1
 end
-
-local just2 = Just(2)
-print(just2)
-print(just2:map(add1))
-local nothing2 = Nothing()
-print(nothing2)
-print(nothing2:map(add1))
+print(Result.Ok(1):map(add1))
+print(Result.Error('boom'):map(add1))
 
 print(" ")
-
-function breakIt()
-    return Nothing()
-end
-
-local just2 = Just(2)
-print(just2)
--- print(just2:map(add1):map(breakIt))
-print(just2:map(add1):chain(breakIt))
+print(Ok(1):getOrElse('cow boom'))
+print(Error('boom'):getOrElse('cow boom'))
 
 print(" ")
-
-function addJust1(value)
-    return Just(value + 1)
+function addBoom(o)
+    return o .. ' b00m!'
 end
-
-function subtractJust5(value)
-    return Just(value - 5)
-end
-
-print(just2:chain(addJust1):chain(subtractJust5))
+print(Ok(1):orElse('aw man'):mapError(addBoom))
+print(Error('ka'):mapError(addBoom))
 
 print(" ")
-print(" ** orElse ** ")
+print(Ok(1):matchWith({
+    Error = function(tbl) return tbl.value end,
+    Ok = function(tbl) return tbl.value end
+}))
+print(Error('dat boom tho'):matchWith({
+    Error = function(tbl) return tbl.value end,
+    Ok = function(tbl) return tbl.value end
+}))
 
-function getError(o)
-    return Just('error')
+print(" ")
+function tryHardStuff1()
+    return Ok(1)
 end
-
-print(Just(1):orElse(getError))
-print(Nothing():orElse(getError))
+function tryHardStuff2(o)
+    return Ok(o + 1)
+end
+function tryHardStuff3(o)
+    return Error('boom done')
+end
+print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2))
+print(Error('wat'):chain(tryHardStuff1):chain(tryHardStuff2))
+print(Ok(1):chain(tryHardStuff1):chain(tryHardStuff2):chain(tryHardStuff3))
