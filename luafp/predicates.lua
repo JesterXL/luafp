@@ -3,7 +3,6 @@
 -- @alias predicates
 local predicates = {}
 
-
 --- Predicate function that returns if the object you pass in is nil or not.
 -- @param o some object to check
 -- @return yesOrNo true if it's nil, false if it's not
@@ -115,6 +114,19 @@ end
 -- print(exists(nil)) -- false
 function predicates.exists(o)
     return predicates.isNil(o) == false
+end
+
+--- Predicate function that returns if the object you pass in is an empty string, like ''
+-- @param o some object to check, probably a string
+-- @return yesOrNo true if it's '', false if it's not
+-- @usage local exists = require 'luafp.predicates'.isEmptyString
+-- print(isEmptyString('')) -- true
+-- print(isEmptyString("")) -- true
+-- print(isEmptyString('cow')) -- false
+-- print(isEmptyString(nil)) -- false
+-- print(isEmptyString(5)) -- false
+function predicates.isEmptyString(o)
+    return o == ''
 end
 
 --- Predicate function that returns true if the object you pass is a cow

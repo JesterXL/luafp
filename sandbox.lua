@@ -179,9 +179,9 @@ end
 -- print(get('type.weapons[1].damage')(turtle))
 
 
-local isNil = require 'luafp.predicates'.isNil
-print(isNil(nil)) -- true
-print(isNil('cow')) -- false
+-- local isNil = require 'luafp.predicates'.isNil
+-- print(isNil(nil)) -- true
+-- print(isNil('cow')) -- false
 
 -- local isBoolean = require './src/predicates'.isBoolean
 -- print(isBoolean(nil)) -- false
@@ -222,3 +222,177 @@ print(isNil('cow')) -- false
 -- co = coroutine.create(blade)
 -- print(isThread(blade))
 -- print(isThread(co))
+
+-- local isEmptyString = require 'luafp.predicates'.isEmptyString
+-- print(isEmptyString('')) -- true
+-- print(isEmptyString("")) -- true
+-- print(isEmptyString('cow')) -- false
+-- print(isEmptyString(nil)) -- false
+-- print(isEmptyString(5)) -- false
+
+
+-- function _has(name, tbl)
+-- 	return tbl[name] ~= nil
+-- end
+-- function has(name, tbl)
+-- 	local result, err = pcall(_has, name, tbl)
+-- 	print("result:", result)
+-- 	print("err:", err)
+-- 	return true
+-- end
+
+-- function unsafeHas(name, tbl)
+--     return tbl[name] ~= nil
+-- end
+
+-- function has(name, tbl)
+--     if name == nil then return false end
+--     local ok, errorOrHas = pcall(unsafeHas, name, tbl)
+--     if ok then
+--         return errorOrHas 
+--     else 
+--         return false
+--     end
+-- end
+
+-- function unsafeGet(name, tbl)
+--     return tbl[name]
+-- end
+
+-- function get(name, tbl)
+--     if name == nil then return nil end
+--     local ok, errorOrValue = pcall(unsafeGet, name, tbl)
+--     if ok then
+--         return errorOrValue
+--     else 
+--         return nil
+--     end
+-- end
+
+cow = {firstName = "Jesse"}
+chicken = {}
+
+-- print(has('firstName', cow))
+-- print(has('firstName', chicken))
+-- print(has('firstName', nil))
+-- print(has(nil, cow))
+-- print("   ")
+-- print(get('firstName', cow))
+-- print(get('firstName', chicken))
+-- print(get('firstName', nil))
+-- print(get(nil, cow))
+-- print(" ")
+
+-- local object = require 'luafp.object'
+-- print(object.has('firstName', cow))
+-- print(object.has('firstName', chicken))
+-- print(object.has('firstName', nil))
+-- print(object.has(nil, cow))
+-- print("   ")
+-- print(object.get('firstName', cow))
+-- print(object.get('firstName', chicken))
+-- print(object.get('firstName', nil))
+-- print(object.get(nil, cow))
+
+
+-- local curry = require 'luafp.func'.curry
+
+-- function add(a, b)
+--     print("add, a:", a, ", b:", b)
+--     return a + b
+-- end
+
+-- curryAdd = curry(add)
+
+-- -- print(add(1, 2))
+-- print(curryAdd(1, 2))
+-- print(curryAdd(1)(2))
+-- print(curryAdd(1)(nil)(nil))
+
+-- function add(a, b)
+--         print("add, a:", a, ", b:", b)
+--         return a + b
+--     end
+
+-- local fx = require('fx')
+-- local f = fx.curry( 2, add )
+
+-- print(f(1, 3))
+
+local Maybe = require 'luafp.maybe'
+local Just = Maybe.Just
+local Nothing = Maybe.Nothing
+
+
+local just1 = Just(1)
+print(just1)
+print(just1.value)
+print(just1:getOrElse('cow'))
+print(just1:matchWith({
+    Just = function(tbl) return tbl.value end,
+    Nothing = function() return 'nothing' end
+}))
+print(Just(1) == Just(1))
+print(Just(1) == 1)
+print(Just(1) == Nothing())
+print("Just:hasInstance(just1):", Just:hasInstance(just1))
+
+print(" ")
+local nothing = Nothing()
+print(nothing)
+print(nothing.value)
+print(nothing:getOrElse('cow'))
+print(nothing:matchWith({
+    Just = function(tbl) return tbl.value end,
+    Nothing = function() return 'nothing' end
+}))
+print(Nothing() == Nothing())
+print("Nothing:hasInstance(nothing):", Nothing:hasInstance(nothing))
+print("Just:hasInstance(nothing):", Just:hasInstance(nothing))
+print("Nothing:hasInstance(just1):", Nothing:hasInstance(just1))
+
+print(" ")
+
+function add1(o)
+    return o + 1
+end
+
+local just2 = Just(2)
+print(just2)
+print(just2:map(add1))
+local nothing2 = Nothing()
+print(nothing2)
+print(nothing2:map(add1))
+
+print(" ")
+
+function breakIt()
+    return Nothing()
+end
+
+local just2 = Just(2)
+print(just2)
+-- print(just2:map(add1):map(breakIt))
+print(just2:map(add1):chain(breakIt))
+
+print(" ")
+
+function addJust1(value)
+    return Just(value + 1)
+end
+
+function subtractJust5(value)
+    return Just(value - 5)
+end
+
+print(just2:chain(addJust1):chain(subtractJust5))
+
+print(" ")
+print(" ** orElse ** ")
+
+function getError(o)
+    return Just('error')
+end
+
+print(Just(1):orElse(getError))
+print(Nothing():orElse(getError))
