@@ -1,5 +1,5 @@
 before_install:
-  - luarocks --version
+  - lua -v
   - sudo luarocks install busted
   - sudo luarocks install luacov-coveralls
 
