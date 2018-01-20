@@ -1,0 +1,10 @@
+before_install:
+  - sudo luarocks install busted
+  - sudo luarocks install luacov-coveralls
+
+script:
+  - busted -c test
+  - luacov
+
+after_success:
+  - luacov-coveralls -t 97tePdW8ffhc1OED7xCnW2EuDd2nyCVQ3
