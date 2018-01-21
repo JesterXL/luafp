@@ -1,5 +1,5 @@
 # run unit tests
-busted -c test
+busted spec
 
 # generate coverage
 # luacov

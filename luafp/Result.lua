@@ -5,6 +5,7 @@
 local Ok = {}
 setmetatable(Ok, {
     __call = function(t, value)
+        t.__ok = true
         t.value = value
         return t
     end,
@@ -24,8 +25,8 @@ setmetatable(Ok, {
             return "Result::Ok( " .. t.value .. " )"
         end
     end,
-    __eq = function(result1, result1)
-        return result1.value == result1.value
+    __eq = function(result1, result2)
+        return result1.__ok == true and result2.__ok == true and result1.value == result2.value
     end
 })
 function Ok:getOrElse(defaultValue)
@@ -115,7 +116,7 @@ function Result:of(o)
 end
 
 function Result:fromNullable(o)
-    if type(o) == nil then
+    if type(o) == 'nil' then
         return Error(o)
     else
         return Ok(o)

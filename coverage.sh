@@ -6,9 +6,9 @@ rm -rf coverage
 # busted test -c -p spec
 busted --verbose --coverage spec
 # luacov
-# luacov-console
-# luacov-console -s
-# luacov-console -l Maybe
+luacov-console
+luacov-console -s
+# luacov-console -l Result
 
 
 # mkdir ./coverage

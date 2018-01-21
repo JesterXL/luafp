@@ -128,9 +128,10 @@ function collection.every(func, list)
     if predicates.isTable(list) == false then
         return false, 'list is not a table'
     end
-    if predicates.isFunction(func) == false then
-        return false, 'func is not a function'
-    end
+    -- if predicates.isFunction(func) == false then
+    --     print("abort")
+    --     return false, 'func is not a function'
+    -- end
     for i, v in ipairs(list) do
         local result = func(v)
         if result == false then
@@ -160,9 +161,9 @@ function collection.some(func, list)
     if predicates.isTable(list) == false then
         return false, 'list is not a table'
     end
-    if predicates.isFunction(func) == false then
-        return false, 'func is not a function'
-    end
+    -- if predicates.isFunction(func) == false then
+    --     return false, 'func is not a function'
+    -- end
     for i, v in ipairs(list) do
         local result = func(v)
         if result == true then

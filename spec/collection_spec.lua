@@ -1,6 +1,8 @@
 local collection = require 'luafp.collection'
 local length = require 'luafp.array'.length
 local reduce = collection.reduce
+local every = collection.every
+local some = collection.some
 
 describe("src/collection.lua", function()
     describe('map', function()
@@ -73,6 +75,36 @@ describe("src/collection.lua", function()
         it('should string list', function()
             local result = reduce(function() return end, 0, '{1, 2, 3}')
             assert.is_nil(result)
+        end)
+    end)
+    describe('every', function()
+        local is1 = function(o) return o == 1 end
+        it('should be true for all 1', function()
+            assert.True(every(is1, {1, 1, 1}))
+        end)
+        it('should be false for all 1, 2, 1', function()
+            assert.False(every(is1, {1, 2, 1}))
+        end)
+        it('should be false for a nil predicate', function()
+            assert.False(every(nil, {1, 2, 1}))
+        end)
+        it('should be false for a string list', function()
+            assert.False(every(is1, '{1, 2, 1}'))
+        end)
+    end)
+    describe('some', function()
+        local is1 = function(o) return o == 1 end
+        it('should be true for at least 1', function()
+            assert.True(some(is1, {1, 2, 3}))
+        end)
+        it('should be false for 2, 2, 2', function()
+            assert.False(some(is1, {2, 2, 2}))
+        end)
+        it('should be false for a nil predicate', function()
+            assert.False(some(nil, {1, 2, 1}))
+        end)
+        it('should be false for a string list', function()
+            assert.False(some(is1, '{1, 2, 1}'))
         end)
     end)
 end)

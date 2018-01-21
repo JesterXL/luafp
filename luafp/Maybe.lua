@@ -89,7 +89,7 @@ function Maybe:of(o)
 end
 
 function Maybe:fromNullable(o)
-    if type(o) == nil then
+    if type(o) == 'nil' then
         return Nothing()
     else
         return Just(o)

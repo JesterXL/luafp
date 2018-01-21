@@ -397,9 +397,10 @@ end
 -- print(Just(1):orElse(getError))
 -- print(Nothing():orElse(getError))
 
--- local Result = require 'luafp.Result'
--- local Ok = Result.Ok
--- local Error = Result.Error
+local Result = require 'luafp.Result'
+local Ok = Result.Ok
+local Error = Result.Error
+print(Ok(1) == Ok(2))
 -- print(Result.Ok(1))
 -- print(Result.Error('boom'))
 -- print(Result.Ok({1, 2}))
@@ -471,14 +472,14 @@ end
 -- print(add(1, nil))
 
 
-function getIt(f)
-    local info = debug.getinfo(f, 'u')
-    return function()
-        print(info.nparams)
-    end
-end
-function sup(man)
-    return true
-end
-local wat = getIt(sup)
-wat()
+-- function getIt(f)
+--     local info = debug.getinfo(f, 'u')
+--     return function()
+--         print(info.nparams)
+--     end
+-- end
+-- function sup(man)
+--     return true
+-- end
+-- local wat = getIt(sup)
+-- wat()
