@@ -24,7 +24,7 @@ install:
 
 script:
   #- luacheck --std max+busted *.lua spec
-  # - luarocks make
+  - luarocks make
   - busted --verbose --coverage spec
 
 after_success:
