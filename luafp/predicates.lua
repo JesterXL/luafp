@@ -57,8 +57,8 @@ end
 -- print(isUserdata(RobloxCharacter)) -- true
 -- print(isUserdata({})) -- false
 -- print(isUserdata(1)) -- false
-function predicates.isUserdata(o)
-    return type(o) == 'userdata'
+function predicates.isUserdata(o, typeFuntion)
+    return typeFuntion(o) == 'userdata'
 end
 
 --- Predicate function that returns if the object you pass in is a Function or not.
