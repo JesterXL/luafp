@@ -52,13 +52,14 @@ end
 
 --- Predicate function that returns if the object you pass in is a Userdata or not.
 -- @param o some object to check
+-- @param typeFunction type checker function, typically you'd use Lua's built in "type"
 -- @return yesOrNo true if it's an Userdata, false if it's not
 -- @usage local isUserdata = require 'luafp.predicates'.isUserdata
 -- print(isUserdata(RobloxCharacter)) -- true
 -- print(isUserdata({})) -- false
 -- print(isUserdata(1)) -- false
-function predicates.isUserdata(o, typeFuntion)
-    return typeFuntion(o) == 'userdata'
+function predicates.isUserdata(o, typeFunction)
+    return typeFunction(o) == 'userdata'
 end
 
 --- Predicate function that returns if the object you pass in is a Function or not.
