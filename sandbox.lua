@@ -463,9 +463,22 @@ end
 
 
 
-local curry = require 'luafp.func'.curry
-local function add(a, b)
-    return a + b
-end
+-- local curry = require 'luafp.func'.curry
+-- local function add(a, b)
+--     return a + b
+-- end
 
-print(add(1, nil))
+-- print(add(1, nil))
+
+
+function getIt(f)
+    local info = debug.getinfo(f, 'u')
+    return function()
+        print(info.nparams)
+    end
+end
+function sup(man)
+    return true
+end
+local wat = getIt(sup)
+wat()
