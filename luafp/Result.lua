@@ -1,4 +1,4 @@
---- luafp Result module.
+--- luafp Result module. For now see: http://folktale.origamitower.com/api/v2.0.0/en/folktale.result.html
 -- @module luafp.Result
 -- @alias Result
 

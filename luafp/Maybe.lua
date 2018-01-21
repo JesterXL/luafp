@@ -1,4 +1,4 @@
---- luafp Maybe module.
+--- luafp Maybe module. For now see: http://folktale.origamitower.com/api/v2.0.0/en/folktale.maybe.html
 -- @module luafp.Maybe
 -- @alias Maybe
 
