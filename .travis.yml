@@ -9,8 +9,6 @@ branches:
 env:
   - LUA="lua=5.2"
   - LUA="lua=5.3"
-  - LUA="luajit=2.0"
-  - LUA="luajit=2.1"
 
 before_install:
   - pip install hererocks
@@ -29,4 +27,4 @@ script:
   - busted --verbose --coverage spec
 
 after_success:
-  - luacov-coveralls -i luafp -e $TRAVIS_BUILD_DIR/lua_install
+  - luacov-coveralls -i luafp -t 97tePdW8ffhc1OED7xCnW2EuDd2nyCVQ3 -e $TRAVIS_BUILD_DIR/lua_install
