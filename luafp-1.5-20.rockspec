@@ -30,5 +30,5 @@ build = {
         ['luafp.reactive'] = 'luafp/reactive.lua',
         ['luafp.util'] = 'luafp/util.lua'
    },
-   copy_directories = { "doc", "test" }
+   copy_directories = { "doc", "spec" }
 }
