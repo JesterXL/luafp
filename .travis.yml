@@ -25,4 +25,4 @@ script:
   #- luacheck --std max+busted *.lua spec
   - luarocks make
   - busted --verbose --coverage spec
-  - luacov-coveralls -i luafp -t 97tePdW8ffhc1OED7xCnW2EuDd2nyCVQ3 -e $TRAVIS_BUILD_DIR/lua_install
+  - luacov-coveralls -t 97tePdW8ffhc1OED7xCnW2EuDd2nyCVQ3 -e $TRAVIS_BUILD_DIR/lua_install
