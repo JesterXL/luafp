@@ -6,12 +6,12 @@ rm -rf coverage
 # busted test -c -p spec
 busted --verbose --coverage spec
 # luacov
-luacov-console
-luacov-console -s
-luacov-console -l Maybe
+# luacov-console
+# luacov-console -s
+# luacov-console -l Maybe
 
 
 # mkdir ./coverage
 # cp luacov.stats.out ./coverage/lcov.info
-# luacov-coveralls -i luafp -t 97tePdW8ffhc1OED7xCnW2EuDd2nyCVQ3
+luacov-coveralls -i luafp -t 97tePdW8ffhc1OED7xCnW2EuDd2nyCVQ3
 # istanbul report
